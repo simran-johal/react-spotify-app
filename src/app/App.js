@@ -1,23 +1,36 @@
 import logo from '../assets/logo.svg';
-import './App.css';
+import styles from './common.module.css';
+import { SearchBar } from '../features/searchBar/SearchBar';
+import { SearchResults } from '../features/searchResults/SearchResults';
+import { Playlist } from '../features/playlist/Playlist';
 
 function App() {
+
+
+  
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edited <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-  className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.App}>
+
+        <header className="App-header">
+            <img />
+        </header>
+
+
+        <main> 
+            <h1 id={styles.test}>Discover and stream your favourite music with Spotify</h1>
+            <SearchBar />
+            <SearchResults />
+            <Playlist />
+        </main>
+
+
+
+        <footer>
+            <p>&copy; 2024 Your Company Name. All rights reserved.</p>  
+        </footer>
+        
     </div>
   );
 }
