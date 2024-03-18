@@ -19,7 +19,9 @@ function App() {
 
 
         <main id={styles.main}> 
-            <h1 id={styles.title}>Discover and stream your favourite music with Spotify</h1>
+            <div id={styles.title}>
+                <h1>Discover and stream your favourite music with <span>Spotify</span></h1>
+            </div>
             <SearchBar />
             <SearchResults />
             <Playlist />
