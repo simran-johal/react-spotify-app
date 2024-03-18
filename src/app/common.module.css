@@ -1,8 +1,6 @@
 /* layout */
 
-:global(body) {
-  font-family: 'Work Sans', sans-serif;
-}
+
 
 .App {
   box-sizing: border-box;
@@ -17,6 +15,10 @@
   align-items: center;
   flex-direction: column ;
   
+}
+
+#logo {
+  width: 110px;
 }
 
 @media only screen and (max-width: 600px) {

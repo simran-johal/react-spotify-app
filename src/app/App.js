@@ -3,7 +3,7 @@ import styles from './common.module.css';
 import { SearchBar } from '../features/searchBar/SearchBar';
 import { SearchResults } from '../features/searchResults/SearchResults';
 import { Playlist } from '../features/playlist/Playlist';
-
+import logoImage from '../assets/Spotify_Logo_RGB_Green.png';
 function App() {
 
 
@@ -14,7 +14,8 @@ function App() {
     <div className={styles.App}>
 
         <header id={styles.header}>
-            <p id={styles.headerPTag}>header</p>
+
+            <img id={styles.logo} src={logoImage}  />
         </header>
 
 
