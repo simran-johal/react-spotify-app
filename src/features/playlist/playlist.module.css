@@ -2,4 +2,6 @@
 
 #playlistContainer {
     border: solid 1px lightblue;
+    height: 100%;
+    width: 100%;
 }

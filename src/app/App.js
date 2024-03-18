@@ -13,13 +13,13 @@ function App() {
   return (
     <div className={styles.App}>
 
-        <header className="App-header">
-            <img />
+        <header id={styles.header}>
+            <p id={styles.headerPTag}>header</p>
         </header>
 
 
-        <main> 
-            <h1 id={styles.test}>Discover and stream your favourite music with Spotify</h1>
+        <main id={styles.main}> 
+            <h1 id={styles.title}>Discover and stream your favourite music with Spotify</h1>
             <SearchBar />
             <SearchResults />
             <Playlist />
@@ -27,10 +27,10 @@ function App() {
 
 
 
-        <footer>
-            <p>&copy; 2024 Your Company Name. All rights reserved.</p>  
+        <footer id={styles.footer}>
+            <p>&copy; 2024 Simran Johal. All rights reserved.</p>  
         </footer>
-        
+
     </div>
   );
 }

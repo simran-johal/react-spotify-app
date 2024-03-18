@@ -2,4 +2,6 @@
 
 #searchResultsContainer {
     border: solid 1px green;
+    height: 100%;
+    width: 100%;
 }

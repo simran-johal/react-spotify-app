@@ -1,5 +1,7 @@
 /* Layout */
 
 #searchBarComponentContainer {
-    border: solid 1px yellow
+    border: solid 1px yellow;
+    height: 100%;
+    width: 100%;
 }
