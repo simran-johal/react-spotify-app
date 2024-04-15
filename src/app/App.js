@@ -4,10 +4,10 @@ import { SearchBar } from '../features/searchBar/SearchBar';
 import { SearchResults } from '../features/searchResults/SearchResults';
 import { Playlist } from '../features/playlist/Playlist';
 import logoImage from '../assets/Spotify_Logo_RGB_Green.png';
+
+
 function App() {
 
-
-  
 
 
   return (
@@ -20,12 +20,20 @@ function App() {
 
 
         <main id={styles.main}> 
-            <div id={styles.title}>
-                <h1>Discover and stream your favourite music with <span>Spotify</span></h1>
-            </div>
-            <SearchBar />
-            <SearchResults />
-            <Playlist />
+
+            <section id={styles.section1}>
+                <div id={styles.title}>
+                    <h1>Discover and stream your favourite music with <span>Spotify</span></h1>
+                </div>
+                <SearchBar />   
+            </section>
+        
+
+            <section id={styles.section2}>
+                <SearchResults />
+                <Playlist />
+            </section>
+
         </main>
 
 

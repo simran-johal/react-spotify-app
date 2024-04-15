@@ -1,7 +1,9 @@
 /* layout */
 
 #searchResultsContainer {
-    border: solid 1px green;
+    border: solid 1px pink;
     height: 100%;
     width: 100%;
+    grid-column: span 6;
+
 }
