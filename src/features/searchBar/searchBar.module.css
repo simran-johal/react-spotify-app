@@ -6,3 +6,13 @@
     width: 100%;
     grid-column: span 6;
 }
+
+@media only screen and (max-width: 600px) { /* developing at 375x812px */
+
+    #searchBarComponentContainer {
+        grid-column: 1 / span 4;
+
+    }
+
+
+}

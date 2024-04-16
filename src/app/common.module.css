@@ -22,40 +22,41 @@
 }
 
 #logo {
-  width: 140px;
-  height: 50px
-
+  width: 150px;
+  height: auto;
+  border: solid 1px yellow;
+  grid-column: 6 / span 2;
+  margin: 0 auto;
+  overflow: hidden;
 }
-
-@media only screen and (max-width: 600px) { /* developing at 375x812px */
-
-  #main {
-    color: green;
-  }
-}
-
-
 
 
 /*--------------------------------*/
 #header {
   border: solid 1px red;
-  height: 60px;
+  height: 5rem;
   box-sizing: border-box;
-  display: flex;
-  justify-content: left;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 1.38vw;
+  padding: 1.25rem 2.7vw;
+  justify-content: center;
   align-items: center;
-  padding: 0 2.7vw;
+  
 
 }
+
+
+
 
 /*--------------------------------*/
 #main{
   border: solid 1px red;
-  height: 100vh;
   padding: 0 2.7vw;
   display: grid;
   height: 100vh;
+  grid-template-rows: repeat(2, 1fr);
+
  
 }
 
@@ -77,8 +78,8 @@
 
 #title h1 {  
   text-align: left;
-  padding-left: 30px;
   font-size: 40px;
+  /*border: solid 1px white;*/
 }
 
 #title span {
@@ -109,4 +110,52 @@
   align-items: center;
   padding: 0px;
   margin: 0px;
+}
+
+
+@media only screen and (max-width: 600px) { /* developing at 375x812px */
+
+  .App {
+    padding: 0 4.2vw
+  }
+
+  #header {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1rem 0;
+    gap: 0.5rem;
+
+  }
+
+  #logo {
+    width: 100px;
+    height: auto;
+    max-height: 4rem;
+    grid-column: 2 / span 2;
+    display: block;
+    margin: 0 auto;
+
+  }
+
+  #main {
+    color: green;
+    padding: 0;
+
+  }
+
+  #section1, #section2 {
+    padding: 1rem 0;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    /*width: 100%;*/
+  }
+
+  #title {
+    grid-column: 1 / span 4;
+    width: 100%;
+
+  }
+
+
+
+
 }
