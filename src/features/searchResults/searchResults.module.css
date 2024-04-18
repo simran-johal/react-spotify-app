@@ -2,9 +2,8 @@
 
 #searchResultsContainer {
     border: solid 1px pink;
-    height: 100%;
-    width: 100%;
     grid-column: span 6;
+    padding: 1.25rem 2.7vw;
 
 }
 

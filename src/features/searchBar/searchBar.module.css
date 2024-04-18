@@ -2,9 +2,12 @@
 
 #searchBarComponentContainer {
     border: solid 1px yellow;
-    height: 100%;
-    width: 100%;
     grid-column: span 6;
+    padding: 1.25rem 2.7vw;
+
+
+    
+    
 }
 
 @media only screen and (max-width: 600px) { /* developing at 375x812px */
@@ -16,3 +19,12 @@
 
 
 }
+
+
+/* 
+#title {
+  border: solid 1px pink;
+  grid-column: span 6;
+  padding: 1.25rem 2.7vw;
+  display: grid;
+  /*align-items: center;*/

@@ -1,9 +1,10 @@
 /* layout */
 
+* {
+  /*border: none !important;*/
+}
 
-
-
-
+/*-----APP------------*/
 .App { /* top level container of header, main + footer */
   /*box-sizing: border-box;
   border: solid 1px purple;
@@ -21,17 +22,10 @@
 
 }
 
-#logo {
-  width: 150px;
-  height: auto;
-  border: solid 1px yellow;
-  grid-column: 6 / span 2;
-  margin: 0 auto;
-  overflow: hidden;
-}
 
 
-/*--------------------------------*/
+
+/*-----HEADER------------*/
 #header {
   border: solid 1px red;
   height: 5rem;
@@ -46,10 +40,19 @@
 
 }
 
+#logo {
+  width: 150px;
+  height: auto;
+ /*border: solid 1px yellow;*/
+  grid-column: 6 / span 2;
+  margin: 0 auto;
+  overflow: hidden;
+}
 
 
 
-/*--------------------------------*/
+
+/*-----MAIN------------*/
 #main{
   border: solid 1px red;
   padding: 0 2.7vw;
@@ -73,6 +76,10 @@
 #title {
   border: solid 1px pink;
   grid-column: span 6;
+  padding: 1.25rem 2.7vw;
+  display: grid;
+  /*align-items: center;*/
+
   
 }
 
@@ -100,7 +107,9 @@
 
 }
 
-/*--------------------------------*/
+
+
+/*-----FOOTER------------*/
 #footer {
   border: solid 1px red;
   height: 40px;
@@ -113,6 +122,8 @@
 }
 
 
+
+/*-----MOBILE------------*/
 @media only screen and (max-width: 600px) { /* developing at 375x812px */
 
   .App {
@@ -152,6 +163,7 @@
   #title {
     grid-column: 1 / span 4;
     width: 100%;
+    padding: 1.25rem 0
 
   }
 
