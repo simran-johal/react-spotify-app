@@ -6,7 +6,13 @@ export const SearchBar = (props) => {
 
     return (
         <div id={styles.searchBarComponentContainer}>
-            <p>my searchbar component</p>
+
+            <h1>Search</h1>
+            <input
+                type="text"
+                id="song-search"
+            />
+            <button>Search</button>
         </div>
         
     )
