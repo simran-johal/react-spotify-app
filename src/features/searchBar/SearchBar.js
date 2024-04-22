@@ -6,13 +6,21 @@ export const SearchBar = (props) => {
 
     return (
         <div id={styles.searchBarComponentContainer}>
+            <div id={styles.content}>
 
-            <h1>Search</h1>
-            <input
-                type="text"
-                id="song-search"
-            />
-            <button>Search</button>
+
+
+                <h1 id={styles.h1}>Search</h1>
+                <input
+                    type="text"
+                    id={styles.songSearch}
+                />
+                <button id={styles.button}>Search Spotify</button>
+
+
+
+
+            </div>
         </div>
         
     )

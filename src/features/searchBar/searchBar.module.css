@@ -2,13 +2,60 @@
 
 #searchBarComponentContainer {
     border: solid 1px yellow;
-    grid-column: span 6;
-    padding: 1.25rem 2.7vw;
-
-
-    
+    grid-column: 8 / span 4;
+    /*padding: 1.25rem 2.7vw;    */
+    display: flex;
+    align-items: center;
     
 }
+
+#content {
+    border: solid 1px green;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem 2.7vw;
+    background: grey;
+    height: 60%;
+    border-radius: 5%;
+    width: 100%;    
+}
+
+
+#h1 {
+    box-sizing: border-box;
+
+    margin: 0;
+
+    
+}
+
+#songSearch {
+    box-sizing: border-box;
+    border: none;
+    padding: 10px 16px;
+    height: 44px;
+    font-size: 16px;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    border-radius: 10px
+
+
+}
+
+button {
+    border: none ;  
+    padding: 10px 16px;
+    height: 44px;
+    font-size: 16px;
+    border-radius: 5px;
+    
+
+}
+
 
 @media only screen and (max-width: 600px) { /* developing at 375x812px */
 
@@ -21,10 +68,4 @@
 }
 
 
-/* 
-#title {
-  border: solid 1px pink;
-  grid-column: span 6;
-  padding: 1.25rem 2.7vw;
-  display: grid;
-  /*align-items: center;*/
+

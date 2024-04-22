@@ -66,10 +66,12 @@
 #section1{
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  /*grid-template-rows: repeat(6, 1fr);*/
   grid-gap: 20px;
   border: solid 1px green;
   padding: 2.7vh 0;
   justify-content: center;
+
 
 }
 
@@ -78,12 +80,13 @@
   grid-column: span 6;
   padding: 1.25rem 2.7vw;
   display: grid;
-  /*align-items: center;*/
+  align-items: center;
 
   
 }
 
-#title h1 {  
+#title h1 { 
+  margin: 0;
   text-align: left;
   font-size: 40px;
   /*border: solid 1px white;*/
