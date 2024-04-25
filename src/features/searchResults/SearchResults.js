@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './searchResults.module.css'
-import { TrackList } from '../tracklist/Tracklist';
+import { TrackList } from '../trackList/Tracklist';
 
 
 export const SearchResults = (props) => {

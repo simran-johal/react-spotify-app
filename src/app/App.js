@@ -16,6 +16,7 @@ function App() {
         <header id={styles.header}>
 
             <img id={styles.logo} src={logoImage}  />
+
         </header>
 
 
@@ -39,7 +40,9 @@ function App() {
 
 
         <footer id={styles.footer}>
+
             <p>&copy; 2024 Simran Johal. All rights reserved.</p>  
+            
         </footer>
 
     </div>

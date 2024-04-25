@@ -17,17 +17,17 @@
     justify-content: center;
     align-items: center;
     padding: 1.25rem 2.7vw;
-    background: grey;
+    background: #343434;
     height: 60%;
-    border-radius: 5%;
+    border-radius: 10px;
     width: 100%;    
 }
 
 
 #h1 {
     box-sizing: border-box;
-
     margin: 0;
+    /*border: solid 1px red;*/
 
     
 }
