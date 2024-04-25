@@ -1,12 +1,34 @@
 /* layout */
 
 #searchResultsContainer {
-    border: solid 1px pink;
+    border: solid 1px yellow;
     grid-column: span 6;
    /* padding: 1.25rem 2.7vw;*/
+    
+
 
 }
 
+#content {
+    box-sizing: border-box;
+    background-color: #5d5b5b;
+    border: solid 1px pink;
+    padding: 1.5rem 1.38vw;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+#header {
+    border: solid 1px green;
+    margin: 0;
+    width: 100%;
+    height: 10%;
+}
 
 @media only screen and (max-width: 600px) { /* developing at 375x812px */
 
@@ -16,3 +38,5 @@
 
 
 }
+
+/*padding: 1.25rem 2.7vw;*/

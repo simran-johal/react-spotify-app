@@ -76,7 +76,7 @@
 }
 
 #title {
-  border: solid 1px pink;
+  /*border: solid 1px pink;*/
   grid-column: span 6;
   padding: 1.25rem 2.7vw;
   display: grid;

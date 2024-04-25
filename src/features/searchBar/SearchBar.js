@@ -14,6 +14,7 @@ export const SearchBar = (props) => {
                 <input
                     type="text"
                     id={styles.songSearch}
+                    placeholder="song, artist or album..."
                 />
                 <button id={styles.button}>Search Spotify</button>
 

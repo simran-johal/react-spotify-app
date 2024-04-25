@@ -1,7 +1,7 @@
 /* Layout */
 
 #searchBarComponentContainer {
-    border: solid 1px yellow;
+    /*border: solid 1px yellow;*/
     grid-column: 8 / span 4;
     /*padding: 1.25rem 2.7vw;    */
     display: flex;
@@ -10,7 +10,7 @@
 }
 
 #content {
-    border: solid 1px green;
+    /*border: solid 1px green;*/
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
