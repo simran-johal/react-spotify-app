@@ -4,7 +4,8 @@ import { TrackList } from '../trackList/Tracklist';
 
 
 export const SearchResults = (props) => {
-    // outside JSX
+
+    // here we will manage SearchResults' state + event handler logic
 
     return (
         <div id={styles.searchResultsContainer}>

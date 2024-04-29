@@ -3,7 +3,8 @@ import styles from './playlist.module.css'
 import { TrackList } from '../trackList/Tracklist';
 
 export const Playlist = (props) => {
-    // outside JSX
+
+    // here we will manage SearchResults' state + event handler logic
 
     return (
         <div id={styles.playlistContainer}>
