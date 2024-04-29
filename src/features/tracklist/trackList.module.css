@@ -1,10 +1,11 @@
 
 
 #trackListContainer {
-    border: solid 1px green;
+    border: solid 1px yellow;
     width: 100%;
     height: 100%;
     box-sizing: border-box;
+
 }
 
 
@@ -13,5 +14,16 @@
     height: 100%;
     width: 100%;
     box-sizing: border-box;
+    /*padding: 1.5rem 1.38vw*/
 
+
+
+
+}
+
+#list{ /* remove all auto styles from ul */
+    box-sizing: border-box;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }

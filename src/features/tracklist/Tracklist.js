@@ -11,8 +11,8 @@ export const TrackList = (props) => {
 
     let mocking = [
         {songName: "songNameA", artist: "artistA", album: "albumA"},
-        {songName: "songNameB", artist: "artistB", album: "albumB"},
-        {songName: "songNameC", artist: "artistC", album: "albumC"}
+        {songName: "songNameA", artist: "artistA", album: "albumA"},
+        
     ]
 
 
@@ -21,7 +21,7 @@ export const TrackList = (props) => {
         <div id={styles.trackListContainer}>
             <div id={styles.content}>
                 
-                <ul>
+                <ul id={styles.list}>
                     {mocking.map((mocks) => (
                         <li  > 
                             <Track
