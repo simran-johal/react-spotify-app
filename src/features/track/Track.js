@@ -3,16 +3,16 @@ import styles from './track.module.css'
 
 
 
-export const Track = (props) => {
+export const Track = ({track}) => {
     // outside JSX
 
     return (
         <div id={styles.trackContainer}>
             <div id={styles.content}>
                 
-                <p>{/* track.name */}</p>
-                <p>{/* track.artist */}</p>
-                <p>{/* track.album */}</p>
+                <p>{track.songName}</p>
+                <p>{track.artist}</p>
+                <p>{track.album}</p>
                 <button></button>
 
                 
