@@ -11,7 +11,7 @@ export const Playlist = (props) => {
             <div id={styles.content}>
 
 
-                <input id={styles.playlistName} placeholder='Playlist Name'  />
+                <input id={styles.playlistName} placeholder='Name your playlist...'  />
 
                 <TrackList/>
                 <button id={styles.btn}>Save to Spotify</button>

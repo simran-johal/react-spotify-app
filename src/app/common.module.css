@@ -1,23 +1,17 @@
 /* layout */
 
 * {
-  /*border: none !important;*/
+  border: none !important;
 }
 
 /*-----APP------------*/
 .App { /* top level container of header, main + footer */
-  /*box-sizing: border-box;
-  border: solid 1px purple;
-  margin: 1px;
-  padding: 0% 5%;
-  background: hsl(0, 0%, 7%);
-  color: white;*/
-  
+ 
   box-sizing: border-box;
   border: solid 1px red;
   background: hsl(0, 0%, 7%);
   color: white;
-  padding: 0 6.94vw
+
   
 
 }
@@ -33,9 +27,11 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-gap: 1.38vw;
-  padding: 1.25rem 2.7vw;
+  padding: 1.25rem 6.94vw;
   justify-content: center;
   align-items: center;
+
+
   
 
 }
@@ -55,7 +51,7 @@
 /*-----MAIN------------*/
 #main{
   border: solid 1px red;
-  padding: 0 2.7vw;
+  padding: 0 6.94vw;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -123,7 +119,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0px;
+  padding: 0 6.94;
   margin: 0px;
 }
 
@@ -133,13 +129,15 @@
 @media only screen and (max-width: 600px) { /* developing at 375x812px */
 
   .App {
-    padding: 0 4.2vw
+
   }
 
   #header {
     grid-template-columns: repeat(4, 1fr);
     padding: 1rem 0;
     gap: 0.5rem;
+    padding: 0 4.2vw
+
 
   }
 
@@ -154,7 +152,7 @@
   }
 
   #main {
-    padding: 0;
+    padding: 0 4.2vw
 
   }
 
@@ -172,7 +170,13 @@
 
   }
 
+  #title h1 {
+    text-align: center;
+  }
 
+  footer {
+    padding: 0 4.2vw
+  }
 
 
 }

@@ -33,6 +33,7 @@
     grid-column: 1 / span 1;
     grid-row: 1;
     justify-self: center;
+    margin: 0;
 
 
 
@@ -44,6 +45,7 @@
     grid-column: 1 / span 1;
     grid-row: 2;
     justify-self: center;
+    margin: 0;
 
 
 
@@ -54,6 +56,7 @@
     grid-column: 2 / span 1;
     grid-row: 2;
     justify-self: center;
+    margin: 0;
 
 
 
@@ -66,16 +69,10 @@
     justify-self: right;
     border: none;
     background: none;
+    margin: 0;
 
 
 
     
-
-}
-
-#btn, #songName, #artist, #album {
-    border: solid 1px red;
-    margin: 0;
-
 
 }
