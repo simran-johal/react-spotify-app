@@ -1,7 +1,7 @@
 /* layout */
 
 * {
-  border: none !important;
+  /*border: none !important;*/
 }
 
 /*-----APP------------*/
@@ -56,9 +56,9 @@
 #main{
   border: solid 1px red;
   padding: 0 2.7vw;
-  display: grid;
-  height: 100vh;
-  grid-template-rows: repeat(2, 1fr);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 
  
 }
@@ -71,6 +71,7 @@
   border: solid 1px green;
   padding: 2.7vh 0;
   justify-content: center;
+  flex: 0 0 40vh
 
 
 }
@@ -107,6 +108,8 @@
   border: solid 1px green;
   padding: 2.7vh 0;
   justify-content: center;
+  flex: 1 0 50vh
+
 
 }
 
@@ -151,7 +154,6 @@
   }
 
   #main {
-    color: green;
     padding: 0;
 
   }
