@@ -28,7 +28,7 @@
     border: solid 1px green;
     margin: 0;
     width: 100%;
-    height: 10%;
+    flex: 0 0 2.75rem
 }
 
 @media only screen and (max-width: 600px) { /* developing at 375x812px */
