@@ -6,21 +6,30 @@ export const SearchBar = (props) => {
 
     // here we will manage state variables
     const [name, setName] = useState(null)
-    //const [accessToken, setAcessToken] = useState(null)
+    const [accessToken, setAcessToken] = useState(null)
     //const [data, setData] = useState(null)
     //const [loading, setLoading] = useState(false)
-    //const [searchTerm, setSearchTerm] = useState(null)
+    const [searchTerm, setSearchTerm] = useState(null)
 
 
-    const handleInputChange = (e) => {
-       const userInput = e.target.value
+    const handleInputChange = (event) => {
+       const userInput = event.target.value
        setName(userInput)
-       // here we will implement dynamic validation controlled compontents
-
     }
 
-    const handleSubmit = (e) => {
-        // here we will trigger the data fetching 
+    const handleSubmit = (event) => {
+        // here we will trigger the flow
+        event.preventDefault();
+        const searchTerm = event.target.search.value
+        setSearchTerm(searchTerm);
+        if (!accessToken) {
+            // redirectToSpotifyAuthorization();
+        }
+
+
+
+
+
     }
 
     return (
