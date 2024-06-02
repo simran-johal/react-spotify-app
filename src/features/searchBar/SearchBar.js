@@ -1,36 +1,81 @@
 import React, {useState, useEffect} from 'react';
+import {redirectToSpotifyAuthorization,  extractAuthorizationCode, exchangeCodeForToken } from '../../utils/authUtils';
+import { fetchData } from '../../utils/fetchUtils';
 import styles from './searchBar.module.css';
 
 
 export const SearchBar = (props) => {
 
-    // here we will manage state variables
-    const [name, setName] = useState(null)
-    const [accessToken, setAcessToken] = useState(null)
-    //const [data, setData] = useState(null)
-    //const [loading, setLoading] = useState(false)
+    const [name, setName] = useState('')
+    const [accessToken, setAccessToken] = useState(null)
+    const [data, setData] = useState(null)
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
     const [searchTerm, setSearchTerm] = useState(null)
 
 
     const handleInputChange = (event) => {
-       const userInput = event.target.value
-       setName(userInput)
-    }
+        const userInput = event.target.value
+        setName(userInput)
+     }
 
-    const handleSubmit = (event) => {
-        // here we will trigger the flow
-        event.preventDefault();
-        const searchTerm = event.target.search.value
-        setSearchTerm(searchTerm);
-        if (!accessToken) {
-            // redirectToSpotifyAuthorization();
+
+    // handle Authorisation + token exchange process
+    useEffect(() => {
+
+        const handleAuthorization = async () => { 
+            const authorizationCode = extractAuthorizationCode()
+            if (authorizationCode) {              
+                setLoading(true);       
+                try {                             
+                    const token = await exchangeCodeForToken(authorizationCode)
+                    if (token) {                  
+                        setAccessToken(token)
+                    }
+                } catch (error) {
+                    setError(error)
+                } finally {
+                    setLoading(false)
+                }
+            }
+
+        }
+        handleAuthorization()
+    }, [])
+
+
+     // Fetch data when accessToken and searchTerm available
+     useEffect(() => {
+
+        if (accessToken && searchTerm) { 
+            const fetchDataWithToken = async () => {
+                setLoading(true);
+                try {
+                    const data = await fetchData(accessToken, searchTerm)
+                    setData(data)
+                } catch (error) {
+                    setError(error)
+                } finally {
+                    setLoading(false)
+                }
+            };
+            fetchDataWithToken()
         }
 
+    }, [accessToken,searchTerm]) 
 
+   
 
+    const handleSearch = (event) => {
+        event.preventDefault();
+        const searchTerm = event.target.value // may be able to use userInput
+        setSearchTerm(searchTerm);
+        if (!accessToken) {
+            redirectToSpotifyAuthorization();
+        }
+    } 
 
-
-    }
+    
 
     return (
         <div id={styles.searchBarComponentContainer}>
@@ -47,9 +92,10 @@ export const SearchBar = (props) => {
                 />
                 <button 
                     id={styles.button}
-                    onSubmit={handleSubmit}
+                    onClick={handleSearch}
                 >Search Spotify</button>
 
+                <p>{JSON.stringify(data, null, 2)}</p> {/* want to pass this to SearchResults */}
 
 
             </div>

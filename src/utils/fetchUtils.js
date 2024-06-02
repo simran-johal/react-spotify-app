@@ -5,7 +5,7 @@ export const fetchData = async (accessToken, searchTerm) => {
     const baseUrl = 'https://api.spotify.com/v1' 
     const endpoint = '/search' 
     const limit = 20;
-    const type = ['track', 'artist', 'album']
+    const type = 'track, artist, album'
 
     const requestParams = `?q=${encodeURIComponent(searchTerm)}&type=${type}&limit=${limit}`;
     const urlToFetch = `${baseUrl}${endpoint}${requestParams}`
