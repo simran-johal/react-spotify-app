@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {redirectToSpotifyAuthorization,  extractAuthorizationCode, exchangeCodeForToken } from '../../utils/authUtils';
-import { fetchData } from '../../utils/fetchUtils';
+import { fetchDataWithToken } from '../../utils/fetchUtils';
 import styles from './searchBar.module.css';
 
 
@@ -48,10 +48,10 @@ export const SearchBar = (props) => {
      useEffect(() => {
 
         if (accessToken && searchTerm) { 
-            const fetchDataWithToken = async () => {
+            const fetchData = async () => {
                 setLoading(true);
                 try {
-                    const data = await fetchData(accessToken, searchTerm)
+                    const data = await fetchDataWithToken(accessToken, searchTerm)
                     setData(data)
                 } catch (error) {
                     setError(error)
@@ -59,7 +59,7 @@ export const SearchBar = (props) => {
                     setLoading(false)
                 }
             };
-            fetchDataWithToken()
+            fetchData() // need to figure out why this diffo in the example
         }
 
     }, [accessToken,searchTerm]) 

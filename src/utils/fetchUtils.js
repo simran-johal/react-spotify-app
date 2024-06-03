@@ -1,7 +1,7 @@
 
 
 
-export const fetchData = async (accessToken, searchTerm) => {
+export const fetchDataWithToken = async (accessToken, searchTerm) => {
     const baseUrl = 'https://api.spotify.com/v1' 
     const endpoint = '/search' 
     const limit = 20;

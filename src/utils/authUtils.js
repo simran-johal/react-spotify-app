@@ -14,7 +14,6 @@ export const redirectToSpotifyAuthorization = () => {
 // function to extract authorization code from URL
 export const extractAuthorizationCode = () => {
     const urlParams = new URLSearchParams(window.location.search);
-    // console.log(urlParams.get('code'))
     return urlParams.get('code'); // get the value of the 'code' param
 };
 
@@ -33,8 +32,6 @@ export const exchangeCodeForToken = async (code) => {
         client_secret: clientSecret
     });
 
-    console.log('Requesting token with body:', body.toString());
-
     try {
         const response = await fetch(tokenUrl, {
             method: 'POST',
@@ -49,7 +46,11 @@ export const exchangeCodeForToken = async (code) => {
         }
 
         const data = await response.json()
-        console.log('Token data:', data); // Debugging line
+
+        // Store tokens
+        localStorage.setItem('accessToken', data.access_token)
+        localStorage.getItem('refreshToken', data.refresh_token)
+
         return data.access_token;
 
     } catch (error) {
@@ -59,3 +60,57 @@ export const exchangeCodeForToken = async (code) => {
 }
 
 
+// Function to refresh access token using refresh token
+export const refreshAccessToken = async () => {
+    const clientId = 'cbcdb22a0db349978821aa6866c9617b'; 
+    const clientSecret = '5aea38c0e14f4dc7b7a6fdb034f1272b';
+    const tokenUrl = 'https://accounts.spotify.com/api/token';
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    if (!refreshToken) {
+        console.error('No refresh token available')
+        redirectToSpotifyAuthorization();
+        return null
+    }
+
+    const body = new URLSearchParams({
+        grant_type: 'refresh_token',
+        refresh_token: refreshToken,
+        client_id: clientId,
+        client_secret: clientSecret
+    });
+
+
+    try {
+        const response = await fetch(tokenUrl, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded',},
+            body: body.toString()
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Response error:', errorText);
+            throw new Error('Failed to refresh access token');
+        }
+
+        const data = await response.json()
+
+        //Update stored tokens
+        localStorage.setItem('accessToken', data.access_token)
+        if (data.refresh_token) {
+            localStorage.getItem('refreshToken', data.refresh_token)
+        }
+        
+
+        return data.access_token;
+
+    } catch (error) {
+        console.log('Error', error);
+        redirectToSpotifyAuthorization()
+        return null;
+    }
+
+
+
+}
