@@ -7,6 +7,7 @@ export const redirectToSpotifyAuthorization = () => {
     const scopes = encodeURIComponent('user-read-private user-read-email');
     const redirectUri = encodeURIComponent('http://localhost:3000/callback');
     const authorizationUrl = `https://accounts.spotify.com/authorize?response_type=${responseType}&client_id=${clientId}&scope=${scopes}&redirect_uri=${redirectUri}`;
+    console.log('Redirecting to:', authorizationUrl); // Debugging log
 
     window.location.href = authorizationUrl;
 };
@@ -29,32 +30,39 @@ export const exchangeCodeForToken = async (code) => {
         code: code,
         redirect_uri: redirectUri,
         client_id: clientId,
-        client_secret: clientSecret
+        client_secret: clientSecret,
     });
 
+    console.log("Extract authorization func triggered.")
+
     try {
-        const response = await fetch(tokenUrl, {
+        const response = await fetch(tokenUrl, { // ISSUE WITH THE POST CAUSING IF(!RESPONSE.OK) TO SHOW
             method: 'POST',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded',},
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: body.toString()
         });
 
+       
+
         if (!response.ok) {
-            const errorText = await response.text();
-            console.error('Response error:', errorText);
-            throw new Error('Failed to exchange authorization code for token');
+            const errorText = await response.text(); 
+            console.log('Response error:', errorText); // THIS IS TRIGGING
+            throw new Error('Failed to exchange authorization code for token'); // THIS IS TRIGGING
+            
         }
 
         const data = await response.json()
 
         // Store tokens
         localStorage.setItem('accessToken', data.access_token)
+        console.log("2. Stored accessToken to localStorage: ", data.access_token)
         localStorage.getItem('refreshToken', data.refresh_token)
+        console.log("3. Stored refreshToken to localStorage: ", data.refresh_token)
 
         return data.access_token;
 
     } catch (error) {
-        console.log('Error', error);
+        console.log('Error', error); // THIS IS TRIGGING
         return null;
     }
 }

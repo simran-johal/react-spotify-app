@@ -20,38 +20,36 @@ export const fetchDataWithToken = async (searchTerm) => {
     }
 
     try {
-
+        // console.log(`Fetching data from URL: ${urlToFetch}`) // DEBUGGING
         const response = await fetch(urlToFetch, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         });
 
-        // refresh token code starts
         if (response.status === 401) {
             try {
-                accessToken = await refreshAccessToken(); // if response erro refresh access token
-                if (!accessToken) {                     // if fails then throw error telling us
+                console.log('Access token expired. Refreshing token...') // DEBUGGING
+                accessToken = await refreshAccessToken(); 
+                if (!accessToken) {                    
                     throw new Error('Failed to refresh access token');
                 }
 
-                response = await fetch(urlToFetch, {    // if get new accessToken try to fetch now
+                response = await fetch(urlToFetch, {   
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
                     }
                 })
-            } catch (refreshError) {                    // if fails tell us
+            } catch (refreshError) {                 
                 throw new Error('Error refreshing access token: ' + refreshError.message)
             }
         }
 
-        // refresh token code ends
-
-        if (!response.ok) {                             // if neither 
+        if (!response.ok) {                        
             throw new Error('Network response was not ok');
         };
 
-        return await response.json();                   // once successful refresh/access + got response
+        return await response.json();                 
     } catch (fetchError) {
         throw new Error('Error fetching data: ' + fetchError.message)
 

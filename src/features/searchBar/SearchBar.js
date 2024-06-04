@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {redirectToSpotifyAuthorization,  extractAuthorizationCode, exchangeCodeForToken } from '../../utils/authUtils';
+import { redirectToSpotifyAuthorization, extractAuthorizationCode, exchangeCodeForToken } from '../../utils/authUtils';
 import { fetchDataWithToken } from '../../utils/fetchUtils';
 import styles from './searchBar.module.css';
 
@@ -21,33 +21,45 @@ export const SearchBar = (props) => {
 
 
     // handle Authorisation + token exchange process
+    
+
     useEffect(() => {
+        const handleAuthorization = async () => {
+            const authorizationCode = extractAuthorizationCode();
+            console.log("1. Recieved Auth Code: ", authorizationCode)
+            if (authorizationCode) {
+                setLoading(true);
+                try {
+                    const token = await exchangeCodeForToken(authorizationCode); // ISSUE IS IN THE EXCHANGE
+                    console.log('4. Access token received from exchangeFunc:', token);
 
-        const handleAuthorization = async () => { 
-            const authorizationCode = extractAuthorizationCode()
-            if (authorizationCode) {              
-                setLoading(true);       
-                try {                             
-                    const token = await exchangeCodeForToken(authorizationCode)
-                    if (token) {                  
-                        setAccessToken(token)
+                    if (token) {
+                        setAccessToken(token);
+
+                    } else { console.log("Failed to obtain access token.") 
+                    
                     }
+
                 } catch (error) {
-                    setError(error)
+                    setError(error);
+                    console.error('Error during token exchange:', error);
                 } finally {
-                    setLoading(false)
+                    setLoading(false);
                 }
-            }
-
-        }
+            } 
+        };
         handleAuthorization()
-    }, [])
+    }, []);
 
+    useEffect(() => { // CHECKING STATE UPDATE
+        if (accessToken) {
+            console.log("AccessToken updated: ", accessToken);
+        }
+    }, [accessToken]);
 
      // Fetch data when accessToken and searchTerm available
      useEffect(() => {
 
-        if (accessToken && searchTerm) { 
             const fetchData = async () => {
                 setLoading(true);
                 try {
@@ -58,23 +70,28 @@ export const SearchBar = (props) => {
                 } finally {
                     setLoading(false)
                 }
-            };
-            fetchData() // need to figure out why this diffo in the example
+        
+            if (accessToken && searchTerm) { 
+                fetchData() 
+                console.log("FetchData() executing...")
+            }
         }
-
     }, [accessToken,searchTerm]) 
 
    
 
     const handleSearch = (event) => {
         event.preventDefault();
-        const searchTerm = event.target.value // may be able to use userInput
-        setSearchTerm(searchTerm);
+        setSearchTerm(name);
+        console.log(name)
         if (!accessToken) {
-            redirectToSpotifyAuthorization();
-        }
-    } 
-
+            console.log('No access token available. Redirecting to Spotify authorization...');
+            setTimeout(() => {
+                redirectToSpotifyAuthorization();
+            }, 3000);
+        
+        } 
+    }
     
 
     return (

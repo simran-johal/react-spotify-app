@@ -10,18 +10,27 @@ function App() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div className={styles.App}>
 
         <header id={styles.header}>
-
             <img id={styles.logo} src={logoImage}  />
-
         </header>
 
 
         <main id={styles.main}> 
-
             <section id={styles.section1}>
                 <div id={styles.title}>
                     <h1>Discover and stream your favourite music with <span>Spotify</span></h1>
@@ -34,15 +43,12 @@ function App() {
                 <SearchResults />
                 <Playlist />
             </section>
-
         </main>
 
 
 
         <footer id={styles.footer}>
-
             <p>&copy; 2024 Simran Johal. All rights reserved.</p>  
-            
         </footer>
 
     </div>
