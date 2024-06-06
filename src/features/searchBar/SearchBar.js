@@ -14,51 +14,56 @@ export const SearchBar = (props) => {
     const [searchTerm, setSearchTerm] = useState(null)
 
 
+
+
+
+
+
+    // DYNAMIC VALIDATION
     const handleInputChange = (event) => {
         const userInput = event.target.value
         setName(userInput)
      }
 
+    // TOKEN EXCHANGE PROCESS OF AUTHORISATION
+    const handleAuthorization = async () => {
+        const authorizationCode = extractAuthorizationCode();
+        console.log("1. Received Auth Code:", authorizationCode);
 
-    // handle Authorisation + token exchange process
-    
+        if (authorizationCode) {
+            setLoading(true);
+            try {
+                const token = await exchangeCodeForToken(authorizationCode);
+                console.log('4. Access token received from exchangeFunc:', token);
 
-    useEffect(() => {
-        const handleAuthorization = async () => {
-            const authorizationCode = extractAuthorizationCode();
-            console.log("1. Recieved Auth Code: ", authorizationCode)
-            if (authorizationCode) {
-                setLoading(true);
-                try {
-                    const token = await exchangeCodeForToken(authorizationCode); // ISSUE IS IN THE EXCHANGE
-                    console.log('4. Access token received from exchangeFunc:', token);
-
-                    if (token) {
-                        setAccessToken(token);
-
-                    } else { console.log("Failed to obtain access token.") 
-                    
-                    }
-
-                } catch (error) {
-                    setError(error);
-                    console.error('Error during token exchange:', error);
-                } finally {
-                    setLoading(false);
+                if (token) {
+                    setAccessToken(token);
+                } else {
+                    console.log("Failed to obtain access token.");
+                    redirectToSpotifyAuthorization()
                 }
-            } 
-        };
-        handleAuthorization()
-    }, []);
-
-    useEffect(() => { // CHECKING STATE UPDATE
+            } catch (error) {
+                setError(error);
+                console.error('Error during token exchange:', error);
+            } finally {
+                setLoading(false);
+            }
+        } else {
+            console.log('No authorization code found. Redirecting to Spotify authorization...');
+            redirectToSpotifyAuthorization();
+        }
+    };
+  
+    // CHECKING IF STATE IS UPDATED
+    useEffect(() => {
         if (accessToken) {
             console.log("AccessToken updated: ", accessToken);
         }
     }, [accessToken]);
 
-     // Fetch data when accessToken and searchTerm available
-     useEffect(() => {
+
+     // FFETCH DATA WHEN SEARCHTEMR AND ACCESSTOKEN AVAILABLE
+    useEffect(() => {
 
             const fetchData = async () => {
                 setLoading(true);
@@ -76,23 +81,39 @@ export const SearchBar = (props) => {
                 console.log("FetchData() executing...")
             }
         }
-    }, [accessToken,searchTerm]) 
+    }, [accessToken, searchTerm]) 
 
+    
+    useEffect(() => {
+        
+
+
+    }, [])
    
-
+   
+    
+    // HANDLING THE SEARCH TRIGGER
     const handleSearch = (event) => {
         event.preventDefault();
-        setSearchTerm(name);
-        console.log(name)
-        if (!accessToken) {
-            console.log('No access token available. Redirecting to Spotify authorization...');
-            setTimeout(() => {
-                redirectToSpotifyAuthorization();
-            }, 3000);
-        
+
+       if (!accessToken) { // IF NO TOKEN
+            console.log('No access token available. Executing handleAuthorisation() ');
+            handleAuthorization();
+
+           
+        } else { // IF GOT TOKEN SEARCHTERM STATE UPDATED -> REMOUNT -> FETCH EFFECT EXECUTES DATA FETCH
+            setSearchTerm(name);
+            console.log(name)
+            console.log('Access token is available: ', accessToken)
         } 
+       
     }
     
+
+
+
+
+
 
     return (
         <div id={styles.searchBarComponentContainer}>
