@@ -4,11 +4,11 @@ import { fetchDataWithToken } from '../../utils/fetchUtils';
 import styles from './searchBar.module.css';
 
 
-export const SearchBar = (props) => {
+export const SearchBar = ({data, setData}) => {
 
     const [name, setName] = useState('')
     const [accessToken, setAccessToken] = useState(null)
-    const [data, setData] = useState(null)
+    //const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const [searchTerm, setSearchTerm] = useState(null)
@@ -64,8 +64,9 @@ export const SearchBar = (props) => {
             const fetchData = async () => {
                 setLoading(true);
                 try {
-                    const data = await fetchDataWithToken(accessToken, searchTerm)
-                    setData(data)
+                    const recievedData = await fetchDataWithToken(accessToken, searchTerm)
+                    setData(recievedData)
+                    console.log('Data state updated to: ', data) // doesnt update instantly
                 } catch (error) {
                     setError(error)
                 } finally {
@@ -83,7 +84,6 @@ export const SearchBar = (props) => {
     // HANDLING THE SEARCH TRIGGER
     const handleSearch = (event) => {
         event.preventDefault();
-
         const accessToken = localStorage.getItem('accessToken');
 
        if (!accessToken) { // IF NO TOKEN
@@ -95,12 +95,8 @@ export const SearchBar = (props) => {
             console.log(name)
             console.log('Access token is available: ', accessToken)
         } 
-       
     }
     
-
-
-
     return (
         <div id={styles.searchBarComponentContainer}>
             <div id={styles.content}>
@@ -119,7 +115,7 @@ export const SearchBar = (props) => {
                     onClick={handleSearch}
                 >Search Spotify</button>
 
-                <p>{JSON.stringify(data, null, 2)}</p> {/* want to pass this to SearchResults */}
+
 
 
             </div>

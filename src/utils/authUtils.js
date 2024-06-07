@@ -1,5 +1,3 @@
-
-
 // function to construct authorization URL and redirect USER
 export const redirectToSpotifyAuthorization = () => {
     const responseType = 'code';
@@ -116,7 +114,5 @@ export const refreshAccessToken = async () => {
         redirectToSpotifyAuthorization()
         return null;
     }
-
-
 
 }

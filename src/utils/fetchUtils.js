@@ -49,10 +49,11 @@ export const fetchDataWithToken = async (searchTerm) => {
             console.log('Response error: ', errorText)             
             throw new Error('Network response was not ok');
         } else {
-            console.log("Fetch Successful")
+            console.log("Fetch Successful...")
         }
 
-        return await response.json();                 
+        const data = await response.json();                 
+        return data
     } catch (fetchError) {
         throw new Error('Error fetching data: ' + fetchError.message)
 
