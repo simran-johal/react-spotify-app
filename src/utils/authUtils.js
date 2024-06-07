@@ -109,7 +109,7 @@ export const refreshAccessToken = async () => {
         //Update stored tokens
         localStorage.setItem('accessToken', data.access_token)
         if (data.refresh_token) {
-            localStorage.getItem('refreshToken', data.refresh_token)
+            localStorage.setItem('refreshToken', data.refresh_token)
         }
         
 

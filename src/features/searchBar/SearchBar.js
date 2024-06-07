@@ -38,6 +38,7 @@ export const SearchBar = (props) => {
 
                 if (token) {
                     setAccessToken(token);
+
                 } else {
                     console.log("Failed to obtain access token.");
                     redirectToSpotifyAuthorization()
@@ -61,6 +62,8 @@ export const SearchBar = (props) => {
         }
     }, [accessToken]);
 
+    /*console.log("AccessToken before useEffect:", accessToken);
+    console.log("SearchTerm before useEffect:", searchTerm);*/
 
      // FFETCH DATA WHEN SEARCHTEMR AND ACCESSTOKEN AVAILABLE
     useEffect(() => {
@@ -75,20 +78,17 @@ export const SearchBar = (props) => {
                 } finally {
                     setLoading(false)
                 }
-        
-            if (accessToken && searchTerm) { 
-                fetchData() 
-                console.log("FetchData() executing...")
-            }
         }
-    }, [accessToken, searchTerm]) 
+
+        const accessToken = localStorage.getItem('accessToken');
+        if (accessToken && searchTerm) { 
+            fetchData() 
+            console.log("FetchData() executing...")
+        }
+    }, [searchTerm]) 
 
     
-    useEffect(() => {
-        
 
-
-    }, [])
    
    
     
@@ -96,11 +96,12 @@ export const SearchBar = (props) => {
     const handleSearch = (event) => {
         event.preventDefault();
 
+        const accessToken = localStorage.getItem('accessToken');
+
        if (!accessToken) { // IF NO TOKEN
             console.log('No access token available. Executing handleAuthorisation() ');
             handleAuthorization();
 
-           
         } else { // IF GOT TOKEN SEARCHTERM STATE UPDATED -> REMOUNT -> FETCH EFFECT EXECUTES DATA FETCH
             setSearchTerm(name);
             console.log(name)
