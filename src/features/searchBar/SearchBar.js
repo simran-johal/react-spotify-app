@@ -14,11 +14,6 @@ export const SearchBar = (props) => {
     const [searchTerm, setSearchTerm] = useState(null)
 
 
-
-
-
-
-
     // DYNAMIC VALIDATION
     const handleInputChange = (event) => {
         const userInput = event.target.value
@@ -62,8 +57,6 @@ export const SearchBar = (props) => {
         }
     }, [accessToken]);
 
-    /*console.log("AccessToken before useEffect:", accessToken);
-    console.log("SearchTerm before useEffect:", searchTerm);*/
 
      // FFETCH DATA WHEN SEARCHTEMR AND ACCESSTOKEN AVAILABLE
     useEffect(() => {
@@ -87,11 +80,6 @@ export const SearchBar = (props) => {
         }
     }, [searchTerm]) 
 
-    
-
-   
-   
-    
     // HANDLING THE SEARCH TRIGGER
     const handleSearch = (event) => {
         event.preventDefault();
@@ -110,9 +98,6 @@ export const SearchBar = (props) => {
        
     }
     
-
-
-
 
 
 

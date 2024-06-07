@@ -36,21 +36,17 @@ export const exchangeCodeForToken = async (code, redirectToSpotifyAuthorization)
     console.log("Extract authorization func triggered.")
 
     try {
-        const response = await fetch(tokenUrl, { // ISSUE WITH THE POST CAUSING IF(!RESPONSE.OK) TO SHOW
+        const response = await fetch(tokenUrl, { 
             method: 'POST',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'},
             body: body.toString()
         });
 
        
-
         if (!response.ok) {
             const errorText = await response.text(); 
-            console.log('Response error:', errorText); // THIS IS TRIGGING
-            //redirectToSpotifyAuthorization()
-            throw new Error('Failed to exchange authorization code for token'); // THIS IS TRIGGING
-            
-            
+            console.log('Response error:', errorText); 
+            throw new Error('Failed to exchange authorization code for token');
         }
 
         const data = await response.json()
@@ -64,7 +60,7 @@ export const exchangeCodeForToken = async (code, redirectToSpotifyAuthorization)
         return data.access_token;
 
     } catch (error) {
-        console.log('Error', error); // THIS IS TRIGGING
+        console.log('Error', error); 
         return null;
     }
 }

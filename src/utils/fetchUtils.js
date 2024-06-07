@@ -4,7 +4,7 @@ const constructUrl = (searchTerm) => {
     const baseUrl = 'https://api.spotify.com/v1' 
     const endpoint = '/search' 
     const limit = 20;
-    const type = 'track, artist, album'
+    const type = ['track', 'artist', 'album']
 
     const requestParams = `?q=${encodeURIComponent(searchTerm)}&type=${type}&limit=${limit}`;
     return `${baseUrl}${endpoint}${requestParams}`
@@ -20,7 +20,6 @@ export const fetchDataWithToken = async (searchTerm) => {
     }
 
     try {
-        // console.log(`Fetching data from URL: ${urlToFetch}`) // DEBUGGING
         const response = await fetch(urlToFetch, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
@@ -29,7 +28,7 @@ export const fetchDataWithToken = async (searchTerm) => {
 
         if (response.status === 401) {
             try {
-                console.log('Access token expired. Refreshing token...') // DEBUGGING
+                console.log('Access token expired. Refreshing token...') 
                 accessToken = await refreshAccessToken(); 
                 if (!accessToken) {                    
                     throw new Error('Failed to refresh access token');
@@ -45,9 +44,13 @@ export const fetchDataWithToken = async (searchTerm) => {
             }
         }
 
-        if (!response.ok) {                        
+        if (!response.ok) {           
+            const errorText = await response.text()
+            console.log('Response error: ', errorText)             
             throw new Error('Network response was not ok');
-        };
+        } else {
+            console.log("Fetch Successful")
+        }
 
         return await response.json();                 
     } catch (fetchError) {
