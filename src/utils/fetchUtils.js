@@ -4,7 +4,7 @@ const constructUrl = (searchTerm) => {
     const baseUrl = 'https://api.spotify.com/v1' 
     const endpoint = '/search' 
     const limit = 20;
-    const type = ['track', 'artist', 'album']
+    const type = ['track']
 
     const requestParams = `?q=${encodeURIComponent(searchTerm)}&type=${type}&limit=${limit}`;
     return `${baseUrl}${endpoint}${requestParams}`
@@ -42,6 +42,7 @@ export const fetchDataWithToken = async (searchTerm) => {
                 })
             } catch (refreshError) {                 
                 throw new Error('Error refreshing access token: ' + refreshError.message)
+                
             }
         }
 

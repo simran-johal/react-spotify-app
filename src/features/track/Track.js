@@ -3,7 +3,7 @@ import styles from './track.module.css'
 
 
 
-export const Track = ({track}) => {
+export const Track = ({trackName, artistName, albumName}) => {
     // outside JSX
 
 
@@ -13,9 +13,9 @@ export const Track = ({track}) => {
         <div id={styles.trackContainer}>
             <div id={styles.content}>
                 
-                <p id={styles.songName}>{track.songName}</p>
-                <p id={styles.artist}>{track.artist}</p>
-                <p id={styles.album}>{track.album}</p>
+                <p id={styles.songName}>{trackName}</p>
+                <p id={styles.artist}>{artistName}</p>
+                <p id={styles.album}>{albumName}</p>
                 <button id={styles.btn}>{addOrRemove}</button>
 
                 

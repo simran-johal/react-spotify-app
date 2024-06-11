@@ -36,12 +36,12 @@ function App() {
                 <div id={styles.title}>
                     <h1>Discover and stream your favourite music with <span>Spotify</span></h1>
                 </div>
-                <SearchBar data={data} setData={setData} />   
+                <SearchBar data={data}/>   
             </section>
         
 
             <section id={styles.section2}>
-                <SearchResults />
+                <SearchResults data={data} />
                 <Playlist />
             </section>
         </main>

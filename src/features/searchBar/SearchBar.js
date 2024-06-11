@@ -8,7 +8,6 @@ export const SearchBar = ({data, setData}) => {
 
     const [name, setName] = useState('')
     const [accessToken, setAccessToken] = useState(null)
-    //const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const [searchTerm, setSearchTerm] = useState(null)
