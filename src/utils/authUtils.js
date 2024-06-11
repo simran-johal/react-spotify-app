@@ -71,12 +71,6 @@ export const refreshAccessToken = async () => {
     const tokenUrl = 'https://accounts.spotify.com/api/token';
     const refreshToken = localStorage.getItem('refreshToken');
 
-    if (!refreshToken) {
-        console.error('No refresh token available')
-        redirectToSpotifyAuthorization();
-        return null
-    }
-
     const body = new URLSearchParams({
         grant_type: 'refresh_token',
         refresh_token: refreshToken,
@@ -94,7 +88,7 @@ export const refreshAccessToken = async () => {
 
         if (!response.ok) {
             const errorText = await response.text();
-            console.error('Response error:', errorText);
+            console.log('Response error:', errorText);
             throw new Error('Failed to refresh access token');
         }
 
@@ -111,7 +105,9 @@ export const refreshAccessToken = async () => {
 
     } catch (error) {
         console.log('Error', error);
-        redirectToSpotifyAuthorization()
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        setTimeout(() => {redirectToSpotifyAuthorization()},5000)
         return null;
     }
 

@@ -28,6 +28,7 @@ export const fetchDataWithToken = async (searchTerm) => {
 
         if (response.status === 401) {
             try {
+                
                 console.log('Access token expired. Refreshing token...') 
                 accessToken = await refreshAccessToken(); 
                 if (!accessToken) {                    
