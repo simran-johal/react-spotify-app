@@ -107,7 +107,7 @@ export const refreshAccessToken = async () => {
         console.log('Error', error);
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        setTimeout(() => {redirectToSpotifyAuthorization()},5000)
+        setTimeout(() => {redirectToSpotifyAuthorization()},1000)
         return null;
     }
 

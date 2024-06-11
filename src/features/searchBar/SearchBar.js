@@ -56,6 +56,7 @@ export const SearchBar = ({data, setData}) => {
         }
     }, [accessToken]);
 
+  
 
      // FFETCH DATA WHEN SEARCHTEMR AND ACCESSTOKEN AVAILABLE
     useEffect(() => {
@@ -79,6 +80,8 @@ export const SearchBar = ({data, setData}) => {
             console.log("FetchData() executing...")
         }
     }, [searchTerm]) 
+
+  
 
     // HANDLING THE SEARCH TRIGGER
     const handleSearch = (event) => {

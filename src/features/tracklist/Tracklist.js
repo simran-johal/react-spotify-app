@@ -10,23 +10,22 @@ export const TrackList = ({data, setData}) => {
     if (!data || !data.tracks || data.tracks.items.length === 0) {
         return <p>No Tracks Found</p>;
     }
-
+    /*console.log("Logging data in Tracklist: ", data) DATA REACHING */
 
     return (
         <div id={styles.trackListContainer}>
             <div id={styles.content}>
 
                 <ul id={styles.list}>
-                    {data.tracks.items.map((track) => { 
-
-                        <li key={track.id}> {/* ID AUTOMATICALLY IN ALL DATA? */}
+                    {data.tracks.items.map((track) => ( 
+                        <li key={track.id}> 
                             <Track 
                                 trackName={track.name}
                                 artistName={track.artists[0].name}
                                 albumName={track.album.name}
                             />
                         </li>
-                    })} 
+                    ))} 
                 </ul>
                 
                 
@@ -36,7 +35,3 @@ export const TrackList = ({data, setData}) => {
     )
 }
 
-// we map over at the items level e.g. data.tracks.itmes
-// dependant on how many different pieces of data you get determines which data.[here].items you map
-// if wanted album data would be data.album.items.map
-// as we map over each item we then access the properties we need as is necessary

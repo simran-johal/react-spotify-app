@@ -3,8 +3,8 @@ import { refreshAccessToken } from "./authUtils";
 const constructUrl = (searchTerm) => {
     const baseUrl = 'https://api.spotify.com/v1' 
     const endpoint = '/search' 
-    const limit = 20;
-    const type = ['track']
+    const limit = 15;
+    const type = ['track', 'artist', 'album']
 
     const requestParams = `?q=${encodeURIComponent(searchTerm)}&type=${type}&limit=${limit}`;
     return `${baseUrl}${endpoint}${requestParams}`

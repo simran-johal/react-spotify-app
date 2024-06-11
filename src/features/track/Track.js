@@ -4,7 +4,7 @@ import styles from './track.module.css'
 
 
 export const Track = ({trackName, artistName, albumName}) => {
-    // outside JSX
+
 
 
     let addOrRemove = "x"

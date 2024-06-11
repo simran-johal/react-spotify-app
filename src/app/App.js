@@ -4,7 +4,7 @@ import { SearchBar } from '../features/searchBar/SearchBar';
 import { SearchResults } from '../features/searchResults/SearchResults';
 import { Playlist } from '../features/playlist/Playlist';
 import logoImage from '../assets/Spotify_Logo_RGB_Green.png';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 
 function App() {
@@ -17,7 +17,9 @@ function App() {
 
 
 
-
+    /*useEffect(() => {
+        console.log('Data updated:', data);
+      }, [data]);*/
 
 
 
@@ -36,12 +38,12 @@ function App() {
                 <div id={styles.title}>
                     <h1>Discover and stream your favourite music with <span>Spotify</span></h1>
                 </div>
-                <SearchBar data={data}/>   
+                <SearchBar data={data} setData={setData}/>   
             </section>
         
 
             <section id={styles.section2}>
-                <SearchResults data={data} />
+                <SearchResults data={data} setData={setData} />
                 <Playlist />
             </section>
         </main>
