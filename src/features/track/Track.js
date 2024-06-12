@@ -7,7 +7,7 @@ export const Track = ({trackName, artistName, albumName}) => {
 
 
 
-    let addOrRemove = "x"
+    let addOrRemove = "+"
 
     return (
         <div id={styles.trackContainer}>

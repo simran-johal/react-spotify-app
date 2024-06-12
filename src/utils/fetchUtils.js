@@ -1,18 +1,20 @@
 import { refreshAccessToken } from "./authUtils";
 
 const constructUrl = (searchTerm) => {
-    const baseUrl = 'https://api.spotify.com/v1' 
-    const endpoint = '/search' 
+    const baseUrl = 'https://api.spotify.com/' 
+    const endpoint = 'v1/search' 
     const limit = 15;
-    const type = ['track', 'artist', 'album']
+    const type = ['track']
 
-    const requestParams = `?q=${encodeURIComponent(searchTerm)}&type=${type}&limit=${limit}`;
+    //const requestParams = `?q=${encodeURIComponent(searchTerm)}&type=${type}&limit=${limit}`;
+    const requestParams = `?q=${encodeURIComponent(searchTerm)}&type=${type.join(',')}&limit=${limit}`;
     return `${baseUrl}${endpoint}${requestParams}`
 }
 
 
 export const fetchDataWithToken = async (searchTerm) => {
     const urlToFetch = constructUrl(searchTerm);
+
 
     let accessToken = localStorage.getItem('accessToken');
     if (!accessToken) {

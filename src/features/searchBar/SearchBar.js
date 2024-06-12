@@ -64,7 +64,8 @@ export const SearchBar = ({data, setData}) => {
             const fetchData = async () => {
                 setLoading(true);
                 try {
-                    const recievedData = await fetchDataWithToken(accessToken, searchTerm)
+
+                    const recievedData = await fetchDataWithToken(searchTerm)
                     setData(recievedData)
                     console.log('Data state updated to: ', data) // doesnt update instantly
                 } catch (error) {
