@@ -82,7 +82,8 @@ export const SearchBar = ({data, setData}) => {
         }
     }, [searchTerm]) 
 
-  
+    
+
 
     // HANDLING THE SEARCH TRIGGER
     const handleSearch = (event) => {
@@ -112,10 +113,12 @@ export const SearchBar = ({data, setData}) => {
                     id={styles.songSearch}
                     placeholder="song, artist or album..."
                     onChange={handleInputChange}
+                    onKeyDown={(event) => event.key === 'Enter' && handleSearch(event)}
                 />
                 <button 
                     id={styles.button}
                     onClick={handleSearch}
+                    
                 >Search Spotify</button>
 
 
