@@ -14,8 +14,8 @@ export const Track = ({trackName, artistName, albumName, removeTrackFromList, tr
             <div id={styles.content}>
                 
                 <p id={styles.songName}>{trackName}</p>
-                <p id={styles.artist}>{artistName}</p>
-                <p id={styles.album}>{albumName}</p>
+                <p id={styles.artist}>By {artistName}</p>
+                <p id={styles.album}>From {albumName}</p>
                 <button 
                     id={styles.btn}
                     onClick={(event) => removeTrackFromList(trackId, event)}

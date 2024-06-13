@@ -10,14 +10,17 @@ import React, {useState, useEffect} from 'react';
 function App() {
 
     const [data, setData] = useState('')
+    const [playlist, setPlaylist] = useState('')
 
 
-    // HANDLE REMOVAL OF TRACK + CREATE UPDATED DATA COPY
+    // HANDLE REMOVAL OF TRACK + CREATE UPDATED DATA COPY -> MOVE TO UTILITY
     const removeTrackFromList = (trackId, event) => {
         event.preventDefault();
 
         if (data && data.tracks && data.tracks.items) {
+            
             const updatedTracks = data.tracks.items.filter((track) => track.id !== trackId);
+
             const updatedData = {
                 ...data,
                 tracks: {
@@ -26,10 +29,17 @@ function App() {
                 }
             }
             setData(updatedData)
+
+            const removedTrack = data.tracks.items.find(track => track.id === trackId)
+            if (removedTrack) {
+                setPlaylist(
+                    [...playlist, removedTrack])
+                    console.log("Console Playlist: ", playlist)
+            }
         }
 
 
-
+        
 
 
     }
