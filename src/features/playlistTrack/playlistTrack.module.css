@@ -1,0 +1,71 @@
+
+
+#playlistTrackContainer {
+    border: solid 1px green;
+    box-sizing: border-box;
+
+    
+
+}
+
+
+#content {
+ /*   border: solid 1px red;*/
+    box-sizing: border-box;
+    background-color: rgb(99, 99, 99);
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    margin: 5px 0px;
+    font-size: 10px;
+
+
+
+
+
+
+
+
+}
+
+#songName {
+    grid-column: 1 / span 1;
+    grid-row: 1;
+    justify-self: center;
+    margin: 0;
+    font-weight: 800;
+
+
+}
+
+#artist {
+    grid-column: 1 / span 1;
+    grid-row: 2;
+    justify-self: center;
+    margin: 0;
+    font-weight: 200;
+
+}
+
+
+#album {
+    grid-column: 2 / span 1;
+    grid-row: 2;
+    justify-self: center;
+    margin: 0;
+    font-weight: 200;
+
+}
+
+#btn {
+    grid-column: 3 / span 1;
+    grid-row: 1;
+    justify-self: right;
+    border: none;
+    background: none;
+    margin: 0;
+
+
+}

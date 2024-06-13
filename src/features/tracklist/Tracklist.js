@@ -6,15 +6,8 @@ import { Track } from '../track/Track';
 export const TrackList = ({data, setData, removeTrackFromList}) => {
     
 
-
-    
-
-
-
-
-
     if (!data || !data.tracks || data.tracks.items.length === 0) {
-        return <p>No Tracks Found</p>;
+        return <p>No Tracks Found</p>; // OPTIMISE THIS
     }
     /*console.log("Logging data in Tracklist: ", data) DATA REACHING */
 

@@ -5,12 +5,13 @@ import { SearchResults } from '../features/searchResults/SearchResults';
 import { Playlist } from '../features/playlist/Playlist';
 import logoImage from '../assets/Spotify_Logo_RGB_Green.png';
 import React, {useState, useEffect} from 'react';
+import { TrackList } from '../features/trackList/Tracklist';
 
 
 function App() {
 
     const [data, setData] = useState('')
-    const [playlist, setPlaylist] = useState('')
+    const [playlistData, setPlaylistData] = useState('')
 
 
     // HANDLE REMOVAL OF TRACK + CREATE UPDATED DATA COPY -> MOVE TO UTILITY
@@ -31,10 +32,11 @@ function App() {
             setData(updatedData)
 
             const removedTrack = data.tracks.items.find(track => track.id === trackId)
+
             if (removedTrack) {
-                setPlaylist(
-                    [...playlist, removedTrack])
-                    console.log("Console Playlist: ", playlist)
+                setPlaylistData(
+                    [...playlistData, removedTrack])
+                    console.log("Console Playlist: ", playlistData)
             }
         }
 
@@ -72,11 +74,13 @@ function App() {
         
 
             <section id={styles.section2}>
-                <SearchResults 
+                <SearchResults
                     data={data} 
                     setData={setData}
                     removeTrackFromList={removeTrackFromList} />
-                <Playlist />
+                <Playlist 
+                    playlistData={playlistData} 
+                    setPlaylistData={setPlaylistData} />
             </section>
         </main>
 
