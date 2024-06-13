@@ -3,8 +3,14 @@ import styles from './trackList.module.css'
 import { Track } from '../track/Track';
 
 
-export const TrackList = ({data, setData}) => {
+export const TrackList = ({data, setData, removeTrackFromList}) => {
     
+
+
+    
+
+
+
 
 
     if (!data || !data.tracks || data.tracks.items.length === 0) {
@@ -23,6 +29,8 @@ export const TrackList = ({data, setData}) => {
                                 trackName={track.name}
                                 artistName={track.artists[0].name}
                                 albumName={track.album.name}
+                                removeTrackFromList={removeTrackFromList}
+                                trackId={track.id}
                             />
                         </li>
                     ))} 

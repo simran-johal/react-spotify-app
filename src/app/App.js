@@ -12,8 +12,27 @@ function App() {
     const [data, setData] = useState('')
 
 
+    // HANDLE REMOVAL OF TRACK + CREATE UPDATED DATA COPY
+    const removeTrackFromList = (trackId, event) => {
+        event.preventDefault();
+
+        if (data && data.tracks && data.tracks.items) {
+            const updatedTracks = data.tracks.items.filter((track) => track.id !== trackId);
+            const updatedData = {
+                ...data,
+                tracks: {
+                    ...data.tracks,
+                    items: updatedTracks
+                }
+            }
+            setData(updatedData)
+        }
 
 
+
+
+
+    }
 
 
 
@@ -43,7 +62,10 @@ function App() {
         
 
             <section id={styles.section2}>
-                <SearchResults data={data} setData={setData} />
+                <SearchResults 
+                    data={data} 
+                    setData={setData}
+                    removeTrackFromList={removeTrackFromList} />
                 <Playlist />
             </section>
         </main>

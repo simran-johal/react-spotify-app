@@ -3,11 +3,11 @@ import styles from './track.module.css'
 
 
 
-export const Track = ({trackName, artistName, albumName}) => {
+export const Track = ({trackName, artistName, albumName, removeTrackFromList, trackId}) => {
 
 
 
-    let addOrRemove = "+"
+
 
     return (
         <div id={styles.trackContainer}>
@@ -16,7 +16,10 @@ export const Track = ({trackName, artistName, albumName}) => {
                 <p id={styles.songName}>{trackName}</p>
                 <p id={styles.artist}>{artistName}</p>
                 <p id={styles.album}>{albumName}</p>
-                <button id={styles.btn}>{addOrRemove}</button>
+                <button 
+                    id={styles.btn}
+                    onClick={(event) => removeTrackFromList(trackId, event)}
+                >{'+'}</button>
 
                 
             </div>
