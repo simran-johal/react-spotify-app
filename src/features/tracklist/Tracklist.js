@@ -6,17 +6,18 @@ import { Track } from '../track/Track';
 export const TrackList = ({data, setData, removeTrackFromList}) => {
     
 
-    if (!data || !data.tracks || data.tracks.items.length === 0) {
-        return <p>No Tracks Found</p>; // OPTIMISE THIS
-    }
-    /*console.log("Logging data in Tracklist: ", data) DATA REACHING */
+
 
     return (
         <div id={styles.trackListContainer}>
             <div id={styles.content}>
 
                 <ul id={styles.list}>
-                    {data.tracks.items.map((track) => ( 
+                    {!data || 
+                     !data.tracks || 
+                     data.tracks.items.length === 0 
+                     ? <p>Search For a Song</p> 
+                     :data.tracks.items.map((track) => ( 
                         <li key={track.id}> 
                             <Track 
                                 trackName={track.name}

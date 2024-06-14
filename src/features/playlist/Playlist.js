@@ -3,11 +3,9 @@ import styles from './playlist.module.css'
 import { PlaylistTrack } from '../playlistTrack/PlaylistTrack'
 
 
-export const Playlist = ({playlistData, setPlaylisData}) => {
+export const Playlist = ({playlistData, setPlaylistData}) => {
 
-    if (!playlistData || !playlistData.tracks || playlistData.tracks.items.length === 0) {
-        return <p>No Tracks Found</p>; // OPTIMISE THIS
-    }
+    console.log("PlaylistTracks here: ", playlistData) // Confirmed
    
 
     return (
@@ -15,10 +13,9 @@ export const Playlist = ({playlistData, setPlaylisData}) => {
             <div id={styles.content}>
 
                 <input id={styles.playlistName} placeholder='Name your playlist...'  />
-
-                
                 <ul id={styles.list}>
-                    {playlistData.tracks.items.map((track) => ( 
+                    {!playlistData ? <p>No Tracks Added to Playlist</p>
+                     :playlistData.map((track) => ( 
                         <li key={track.id}> 
                             <PlaylistTrack 
                                 trackName={track.name}
