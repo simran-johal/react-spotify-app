@@ -3,7 +3,7 @@ import styles from './playlist.module.css'
 import { PlaylistTrack } from '../playlistTrack/PlaylistTrack'
 
 
-export const Playlist = ({playlistData, setPlaylistData}) => {
+export const Playlist = ({playlistData, setPlaylistData, moveTrackToTrackList}) => {
 
     console.log("PlaylistTracks here: ", playlistData) // Confirmed
    
@@ -22,6 +22,7 @@ export const Playlist = ({playlistData, setPlaylistData}) => {
                                 artistName={track.artists[0].name}
                                 albumName={track.album.name}
                                 trackId={track.id}
+                                moveTrackToTrackList={moveTrackToTrackList}
                             />
                         </li>
                     ))} 

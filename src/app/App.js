@@ -14,15 +14,15 @@ function App() {
     const [playlistData, setPlaylistData] = useState('')
 
 
-    // HANDLE REMOVAL OF TRACK + CREATE UPDATED DATA COPY -> MOVE TO UTILITY
-    const removeTrackFromList = (trackId, event) => {
+    // HANDLE MOVING TRACK TO PLAYLIST + CREATE UPDATED DATA COPY -> MOVE TO UTILITY
+    const moveTrackToPlaylist = (trackId, event) => {
         event.preventDefault();
 
         if (data && data.tracks && data.tracks.items) {
             
             const updatedTracks = data.tracks.items.filter((track) => track.id !== trackId);
 
-            const updatedData = {
+            const updatedData = { 
                 ...data,
                 tracks: {
                     ...data.tracks,
@@ -40,11 +40,40 @@ function App() {
             }
         }
 
+    }
 
-        
+    // HANDLE MOVING TRACK TO TRACKLIST + CREATE UPDATED DATA COPY -> MOVE TO UTILS
+    const moveTrackToTrackList = (trackId, event) => {
+        console.log("Recieiving the Event: ", event, trackId)
+
+        if (playlistData) {
+            const updatedPlaylistData = playlistData.filter((track) => track.id !== trackId);
+            setPlaylistData(updatedPlaylistData)
+
+            const removedTrack = playlistData.find((track) => track.id === trackId);
+
+            if (removedTrack) {
+                setData((prevData) => ({
+                    ...prevData,
+                    tracks: {
+                        ...prevData.track,
+                        items: [...prevData.tracks.items, removedTrack],
+                    },
+                }));
+            }
+
+
+
+
+
+        }
+
+
 
 
     }
+
+
 
 
 
@@ -77,10 +106,11 @@ function App() {
                 <SearchResults
                     data={data} 
                     setData={setData}
-                    removeTrackFromList={removeTrackFromList} />
+                    moveTrackToPlaylist={moveTrackToPlaylist} />
                 <Playlist 
                     playlistData={playlistData} 
-                    setPlaylistData={setPlaylistData} />
+                    setPlaylistData={setPlaylistData}
+                    moveTrackToTrackList={moveTrackToTrackList} />
             </section>
         </main>
 

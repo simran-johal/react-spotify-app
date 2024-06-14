@@ -3,7 +3,7 @@ import styles from './track.module.css'
 
 
 
-export const Track = ({trackName, artistName, albumName, removeTrackFromList, trackId}) => {
+export const Track = ({trackName, artistName, albumName, moveTrackToPlaylist, trackId}) => {
 
 
 
@@ -18,7 +18,7 @@ export const Track = ({trackName, artistName, albumName, removeTrackFromList, tr
                 <p id={styles.album}>From {albumName}</p>
                 <button 
                     id={styles.btn}
-                    onClick={(event) => removeTrackFromList(trackId, event)}
+                    onClick={(event) => moveTrackToPlaylist(trackId, event)}
                 >{'+'}</button>
 
                 

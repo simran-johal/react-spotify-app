@@ -3,7 +3,7 @@ import styles from './playlistTrack.module.css'
 
 
 
-export const PlaylistTrack = ({trackName, artistName, albumName, trackId}) => {
+export const PlaylistTrack = ({trackName, artistName, albumName, moveTrackToTrackList, trackId}) => {
 
    
 
@@ -16,7 +16,7 @@ export const PlaylistTrack = ({trackName, artistName, albumName, trackId}) => {
                 <p id={styles.album}>From {albumName}</p>
                 <button 
                     id={styles.btn}
-                     //onClick={(event) => removeTrackFromList(trackId, event)}
+                     onClick={(event) => moveTrackToTrackList(trackId, event)}
                 >{'-'}</button>
                 
             </div>

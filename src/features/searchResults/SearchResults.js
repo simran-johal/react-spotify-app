@@ -3,7 +3,7 @@ import styles from './searchResults.module.css'
 import { TrackList } from '../trackList/Tracklist';
 
 
-export const SearchResults = ({data, setData, removeTrackFromList}) => {
+export const SearchResults = ({data, setData, moveTrackToPlaylist}) => {
 
     // here we will manage SearchResults' state + event handler logic
 
@@ -18,7 +18,7 @@ export const SearchResults = ({data, setData, removeTrackFromList}) => {
                 <TrackList 
                     data={data} 
                     setData={setData} 
-                    removeTrackFromList={removeTrackFromList}
+                    moveTrackToPlaylist={moveTrackToPlaylist}
                         />
 
 

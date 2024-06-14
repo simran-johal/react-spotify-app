@@ -3,7 +3,7 @@ import styles from './trackList.module.css'
 import { Track } from '../track/Track';
 
 
-export const TrackList = ({data, setData, removeTrackFromList}) => {
+export const TrackList = ({data, setData, moveTrackToPlaylist}) => {
     
 
 
@@ -23,7 +23,7 @@ export const TrackList = ({data, setData, removeTrackFromList}) => {
                                 trackName={track.name}
                                 artistName={track.artists[0].name}
                                 albumName={track.album.name}
-                                removeTrackFromList={removeTrackFromList}
+                                moveTrackToPlaylist={moveTrackToPlaylist}
                                 trackId={track.id}
                             />
                         </li>
