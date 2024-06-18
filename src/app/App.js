@@ -62,25 +62,9 @@ function App() {
                 }));
             }
 
-
-
-
-
         }
 
-
-
-
     }
-
-
-
-
-
-    /*useEffect(() => {
-        console.log('Data updated:', data);
-      }, [data]);*/
-
 
 
 
@@ -110,6 +94,7 @@ function App() {
                 <Playlist 
                     playlistData={playlistData} 
                     setPlaylistData={setPlaylistData}
+                    data={data}
                     moveTrackToTrackList={moveTrackToTrackList} />
             </section>
         </main>

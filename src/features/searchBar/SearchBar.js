@@ -35,7 +35,7 @@ export const SearchBar = ({data, setData}) => {
 
                 } else {
                     console.log("Failed to obtain access token.");
-                    setTimeout(() => {redirectToSpotifyAuthorization()},3000)
+                    setTimeout(() => {redirectToSpotifyAuthorization()},1000)
                 }
             } catch (error) {
                 setError(error);
@@ -45,7 +45,7 @@ export const SearchBar = ({data, setData}) => {
             }
         } else {
             console.log('No authorization code found. Redirecting to Spotify authorization...');
-            setTimeout(() => {redirectToSpotifyAuthorization()},3000)
+            setTimeout(() => {redirectToSpotifyAuthorization()},1000)
         }
     };
   
