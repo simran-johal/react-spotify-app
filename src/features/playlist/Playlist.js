@@ -18,13 +18,22 @@ export const Playlist = ({playlistData, setPlaylistData, moveTrackToTrackList, d
         try {
             const userId = await getUserId() 
             if (userId) {
-                const savedPlaylist = await savePlaylistToSpotify(playlistName, userId)
-                console.log('Playlist saved ah-success-full-eh: ', savedPlaylist)
+                const savedPlaylist = await savePlaylistToSpotify(playlistName, userId, playlistData)
+                console.log('Playlist saved ah-success-full-eh: ', savedPlaylist, playlistName)
+                
+                playlistData.forEach(track => {moveTrackToTrackList(track.id) })
+
+
+                setPlaylistName('')
+                setPlaylistData([])
+                alert(`Playlist "${playlistName}" saved with ${savedPlaylist.trackCount} tracks!`)
             } else {
                 console.log('User ID not found. Unable to save playlist')
+                
             }
         } catch (fetchError) {
             console.log('Error saving playlist: ', fetchError.message)
+            alert(`Failed to save playlist: ${fetchError.message}`);
         }
 
     }

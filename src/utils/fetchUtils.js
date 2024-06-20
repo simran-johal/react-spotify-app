@@ -81,18 +81,19 @@ const constructSavePlaylistUrl = (userId) => {
 
 
 // POST REQUEST FETCH FUNCTION
-export const savePlaylistToSpotify = async (playlistName, userId) => {
+export const savePlaylistToSpotify = async (playlistName, userId, playlistData) => {
    
 
-    const urlToFetch = constructSavePlaylistUrl(userId);
+   
     let accessToken = localStorage.getItem('accessToken');
+    if (!accessToken) throw new Error('No access token available')
+    const urlToFetch = constructSavePlaylistUrl(userId);
 
-    if (!accessToken) {
-        throw new Error('No access token available')
-    }
 
     const requestBody = {
-        name: playlistName
+        name: playlistName,
+        tracks: playlistData
+        //public: false
     };
 
     try {
