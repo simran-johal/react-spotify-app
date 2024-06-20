@@ -71,7 +71,7 @@ export const fetchDataWithToken = async (searchTerm) => {
 
 // URL CONSTRUCTION FOR POST REQUEST
 
-const constructSavePlaylistUrl = (userId) => {
+const constructCreatePlaylistUrl = (userId) => {
     const baseUrl = 'https://api.spotify.com/';
     const endpoint = `v1/users/${userId}/playlists`;
 
@@ -79,25 +79,32 @@ const constructSavePlaylistUrl = (userId) => {
 
 }
 
+const constructAddTracksUrl = (playlistId) => {
+    const baseUrl = 'https://api.spotify.com/';
+    const endpoint = `v1/playlists/${playlistId}/tracks`;
 
-// POST REQUEST FETCH FUNCTION
+    return `${baseUrl}${endpoint}`
+
+}
+
+
+// POST REQUEST TO SAVE PLAYLIST + TRACKS TOGETHER
 export const savePlaylistToSpotify = async (playlistName, userId, playlistData) => {
-   
-
    
     let accessToken = localStorage.getItem('accessToken');
     if (!accessToken) throw new Error('No access token available')
-    const urlToFetch = constructSavePlaylistUrl(userId);
+    const createPlaylistUrlToFetch = constructCreatePlaylistUrl(userId);
 
 
     const requestBody = {
         name: playlistName,
-        tracks: playlistData
-        //public: false
+        public: false
     };
 
     try {
-        const response = await fetch(urlToFetch, {
+
+        // CREATING THE PLAYLIST
+        const creatingResponse = await fetch(createPlaylistUrlToFetch, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -106,19 +113,45 @@ export const savePlaylistToSpotify = async (playlistName, userId, playlistData) 
             body: JSON.stringify(requestBody)
         });
 
-        if (!response.ok) {
-            const errorText = await response.text()
+        if (!creatingResponse.ok) {
+            const errorText = await creatingResponse.text()
             console.log('Response error text: ', errorText)
         }
 
-        const data = await response.json();
-        return data
+        const createdPlaylistData = await creatingResponse.json();
+        const playlistId = createdPlaylistData.id;
 
+
+
+
+        // ADDING THE TRACKS
+        const saveTracksUrlToFetch = constructAddTracksUrl(playlistId);
+
+        const trackUris = playlistData.map(track => track.uri);
+
+        const saveTracksResponse = await fetch(saveTracksUrlToFetch, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            },
+            body: JSON.stringify({ uris: trackUris })
+        });
+
+        if (!saveTracksResponse.ok) {
+            const errorText = await saveTracksResponse.text();
+            throw new Error(`Failed to add tracks: ${errorText}`);
+        }
+
+        return { playlistId, trackCount: trackUris.length };
 
     } catch (fetchError) {
         console.log(fetchError.message)
     }
 }
+
+
+
 
 
 // GET REQUEST TO RETRIEVE USER ID
