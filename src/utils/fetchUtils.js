@@ -82,14 +82,11 @@ const constructSavePlaylistUrl = (userId) => {
 
 // POST REQUEST FETCH FUNCTION
 export const savePlaylistToSpotify = async (playlistName, userId) => {
-    /*console.log(
-        'playlist name: ', playlistName,
-        'userId: ', userId
-    )*/
+   
 
     const urlToFetch = constructSavePlaylistUrl(userId);
-
     let accessToken = localStorage.getItem('accessToken');
+
     if (!accessToken) {
         throw new Error('No access token available')
     }
@@ -143,13 +140,13 @@ export const getUserId = async () => {
         })
 
         if (!response.ok) {
-            const errorText = await response.json()
+            const errorText = await response.text()
             console.log('Response error: ', errorText)
         }
 
-        const userData = response.json()
-        const userId = userData.object.id
-        console.log("get user id func: ", userData)
+        const userData = await response.json()
+        const userId = userData.id
+        console.log("Got User ID Successfully: ", userId)
         return userId
 
     } catch (fetchError) {

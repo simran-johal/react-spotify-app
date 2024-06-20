@@ -2,7 +2,7 @@
 export const redirectToSpotifyAuthorization = () => {
     const responseType = 'code';
     const clientId = 'cbcdb22a0db349978821aa6866c9617b';
-    const scopes = encodeURIComponent('user-read-private user-read-email');
+    const scopes = encodeURIComponent('user-read-private user-read-email playlist-modify-public playlist-modify-private');
     const redirectUri = encodeURIComponent('http://localhost:3000/callback');
     const authorizationUrl = `https://accounts.spotify.com/authorize?response_type=${responseType}&client_id=${clientId}&scope=${scopes}&redirect_uri=${redirectUri}`;
     console.log('Redirecting to:', authorizationUrl); // Debugging log

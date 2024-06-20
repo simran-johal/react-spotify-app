@@ -8,23 +8,21 @@ import { getUserId, savePlaylistToSpotify } from '../../utils/fetchUtils';
 export const Playlist = ({playlistData, setPlaylistData, moveTrackToTrackList, data}) => {
 
     const [playlistName, setPlaylistName] = useState('')
-
     let accessToken = localStorage.getItem('accessToken');
 
+
+
+    
     const playlistSaving = async (event) => { 
 
         try {
-
             const userId = await getUserId() 
-
             if (userId) {
                 const savedPlaylist = await savePlaylistToSpotify(playlistName, userId)
                 console.log('Playlist saved ah-success-full-eh: ', savedPlaylist)
             } else {
                 console.log('User ID not found. Unable to save playlist')
             }
-
-
         } catch (fetchError) {
             console.log('Error saving playlist: ', fetchError.message)
         }
@@ -32,7 +30,6 @@ export const Playlist = ({playlistData, setPlaylistData, moveTrackToTrackList, d
     }
 
     
-
 
     const handlePlaylistSave = (event) => {
         
