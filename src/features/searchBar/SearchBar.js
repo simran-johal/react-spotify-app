@@ -15,12 +15,11 @@ export const SearchBar = ({data, setData}) => {
 
     // DYNAMIC VALIDATION
     const handleInputChange = (event) => {
-        const userInput = event.target.value
-        setName(userInput)
+        setName(event.target.value)
      }
 
     // TOKEN EXCHANGE PROCESS OF AUTHORISATION
-    const handleAuthorization = async () => {
+    /*const handleAuthorization = async () => {
         const authorizationCode = extractAuthorizationCode();
         console.log("1. Received Auth Code:", authorizationCode);
 
@@ -47,7 +46,33 @@ export const SearchBar = ({data, setData}) => {
             console.log('No authorization code found. Redirecting to Spotify authorization...');
             setTimeout(() => {redirectToSpotifyAuthorization()},1000)
         }
+    };*/
+
+    useEffect(() => {
+        const storedToken = localStorage.getItem('accessToken');
+        if (storedToken) {
+            setAccessToken(storedToken);
+        } else {
+            const authCode = extractAuthorizationCode();
+            if (authCode) {
+                handleCodeExchange(authCode);
+            }
+        }
+    }, []);
+
+    const handleCodeExchange = async (code) => {
+        try {
+            const token = await exchangeCodeForToken(code);
+            if (token) {
+                setAccessToken(token);
+                localStorage.setItem('accessToken', token);
+            }
+        } catch (error) {
+            console.error('Error exchanging code for token:', error);
+            setError(error);
+        }
     };
+
   
     // CHECKING IF STATE IS UPDATED
     useEffect(() => {
@@ -85,8 +110,8 @@ export const SearchBar = ({data, setData}) => {
     
 
 
-    // HANDLING THE SEARCH TRIGGER
-    const handleSearch = (event) => {
+    // HANDLING THE SEARCH TRIGGER OLD
+    /*const handleSearch = (event) => {
         event.preventDefault();
         const accessToken = localStorage.getItem('accessToken');
 
@@ -99,7 +124,21 @@ export const SearchBar = ({data, setData}) => {
             console.log(name)
             console.log('Access token is available: ', accessToken)
         } 
-    }
+    }*/
+
+
+    // HANDLING THE SEARCH TRIGGER NEW
+    const handleSearch = (event) => {
+        if (event) event.preventDefault();
+        const storedToken = localStorage.getItem('accessToken');
+        
+        if (!storedToken) {
+            redirectToSpotifyAuthorization();
+            return;
+        }
+
+        setSearchTerm(name);
+    };
     
     return (
         <div id={styles.searchBarComponentContainer}>
