@@ -19,39 +19,20 @@ export const SearchBar = ({data, setData}) => {
      }
 
     // TOKEN EXCHANGE PROCESS OF AUTHORISATION
-    /*const handleAuthorization = async () => {
-        const authorizationCode = extractAuthorizationCode();
-        console.log("1. Received Auth Code:", authorizationCode);
-
-        if (authorizationCode) {
-            setLoading(true);
-            try {
-                const token = await exchangeCodeForToken(authorizationCode);
-                console.log('4. Access token received from exchangeFunc:', token);
-
-                if (token) {
-                    setAccessToken(token);
-
-                } else {
-                    console.log("Failed to obtain access token.");
-                    setTimeout(() => {redirectToSpotifyAuthorization()},1000)
-                }
-            } catch (error) {
-                setError(error);
-                console.error('Error during token exchange:', error);
-            } finally {
-                setLoading(false);
-            }
-        } else {
-            console.log('No authorization code found. Redirecting to Spotify authorization...');
-            setTimeout(() => {redirectToSpotifyAuthorization()},1000)
-        }
-    };*/
-
     useEffect(() => {
         const storedToken = localStorage.getItem('accessToken');
+        const pendingSearchTerm = localStorage.getItem('pendingSearchTerm');
+
         if (storedToken) {
             setAccessToken(storedToken);
+
+            if (pendingSearchTerm) {
+                setSearchTerm(pendingSearchTerm);
+                localStorage.removeItem('pendingSearchTerm');
+
+                fetchData(pendingSearchTerm, storedToken) // SOLUTION TRIAL
+            }
+
         } else {
             const authCode = extractAuthorizationCode();
             if (authCode) {
@@ -67,6 +48,15 @@ export const SearchBar = ({data, setData}) => {
                 setAccessToken(token);
                 localStorage.setItem('accessToken', token);
             }
+
+            const pendingSearchTerm = localStorage.getItem('pendingSearchTerm');
+            if (pendingSearchTerm) {
+                setSearchTerm(pendingSearchTerm);
+                localStorage.removeItem('pendingSearchTerm');
+                fetchData(pendingSearchTerm, token);
+            }
+
+
         } catch (error) {
             console.error('Error exchanging code for token:', error);
             setError(error);
@@ -82,49 +72,32 @@ export const SearchBar = ({data, setData}) => {
     }, [accessToken]);
 
   
+    const fetchData = async () => {
+        setLoading(true);
+        try {
+
+            const recievedData = await fetchDataWithToken(searchTerm, accessToken)
+            setData(recievedData)
+            console.log('Data state updated to: ', recievedData) // doesnt update instantly
+            console.log('searchTerm is: ', searchTerm)
+        } catch (error) {
+            setError(error)
+        } finally {
+            setLoading(false)
+        }
+}
 
      // FFETCH DATA WHEN SEARCHTEMR AND ACCESSTOKEN AVAILABLE
     useEffect(() => {
 
-            const fetchData = async () => {
-                setLoading(true);
-                try {
-
-                    const recievedData = await fetchDataWithToken(searchTerm)
-                    setData(recievedData)
-                    console.log('Data state updated to: ', data) // doesnt update instantly
-                } catch (error) {
-                    setError(error)
-                } finally {
-                    setLoading(false)
-                }
-        }
-
         const accessToken = localStorage.getItem('accessToken');
         if (accessToken && searchTerm) { 
-            fetchData() 
+            fetchData(searchTerm, accessToken) 
             console.log("FetchData() executing...")
         }
-    }, [searchTerm]) 
+    }, [accessToken, searchTerm]) 
 
     
-
-
-    // HANDLING THE SEARCH TRIGGER OLD
-    /*const handleSearch = (event) => {
-        event.preventDefault();
-        const accessToken = localStorage.getItem('accessToken');
-
-       if (!accessToken) { // IF NO TOKEN
-            console.log('No access token available. Executing handleAuthorisation() ');
-            handleAuthorization();
-
-        } else { // IF GOT TOKEN SEARCHTERM STATE UPDATED -> REMOUNT -> FETCH EFFECT EXECUTES DATA FETCH
-            setSearchTerm(name);
-            console.log(name)
-            console.log('Access token is available: ', accessToken)
-        } 
-    }*/
 
 
     // HANDLING THE SEARCH TRIGGER NEW
@@ -133,6 +106,7 @@ export const SearchBar = ({data, setData}) => {
         const storedToken = localStorage.getItem('accessToken');
         
         if (!storedToken) {
+            localStorage.setItem('pendingSearchTerm', name);
             redirectToSpotifyAuthorization();
             return;
         }
