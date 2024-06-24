@@ -10,7 +10,7 @@ export const SearchBar = ({data, setData}) => {
     const [accessToken, setAccessToken] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
-    const [searchTerm, setSearchTerm] = useState(null)
+    const [searchTerm, setSearchTerm] = useState('')
 
 
     // DYNAMIC VALIDATION
