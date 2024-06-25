@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styles from './playlist.module.css'
 import { PlaylistTrack } from '../playlistTrack/PlaylistTrack'
 import { getUserId, savePlaylistToSpotify } from '../../utils/fetchUtils';
+import { toast } from 'react-toastify'
 
 
 
@@ -26,14 +27,39 @@ export const Playlist = ({playlistData, setPlaylistData, moveTrackToTrackList, d
 
                 setPlaylistName('')
                 setPlaylistData([])
-                alert(`Playlist "${playlistName}" saved with ${savedPlaylist.trackCount} tracks!`)
+
+
+
+               /* alert(`Playlist "${playlistName}" saved with ${savedPlaylist.trackCount} tracks!`)*/
+
+               toast.success('Playlist saved successfully!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            
             } else {
                 console.log('User ID not found. Unable to save playlist')
                 
             }
         } catch (fetchError) {
             console.log('Error saving playlist: ', fetchError.message)
-            alert(`Failed to save playlist: ${fetchError.message}`);
+            /*alert(`Failed to save playlist: ${fetchError.message}`);*/
+
+            toast.success('Playlist failed to save!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+           
         }
 
     }

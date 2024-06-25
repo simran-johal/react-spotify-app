@@ -5,7 +5,9 @@ import { SearchResults } from '../features/searchResults/SearchResults';
 import { Playlist } from '../features/playlist/Playlist';
 import logoImage from '../assets/Spotify_Logo_RGB_Green.png';
 import React, {useState, useEffect} from 'react';
-import { TrackList } from '../features/trackList/Tracklist';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function App() {
@@ -105,6 +107,8 @@ function App() {
             <p>&copy; 2024 Simran Johal. All rights reserved.</p>  
         </footer>
 
+        <ToastContainer/>
+        
     </div>
   );
 }
