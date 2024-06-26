@@ -102,15 +102,6 @@ export const refreshAccessToken = async () => {
             localStorage.setItem('refreshToken', data.refresh_token)
         }
         
-        toast.success('User Authorised Successfully... Search Spotify...', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
 
         return data.access_token;
 

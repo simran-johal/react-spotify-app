@@ -24,13 +24,8 @@ export const Playlist = ({playlistData, setPlaylistData, moveTrackToTrackList, d
                 
                 playlistData.forEach(track => {moveTrackToTrackList(track.id) })
 
-
                 setPlaylistName('')
                 setPlaylistData([])
-
-
-
-               /* alert(`Playlist "${playlistName}" saved with ${savedPlaylist.trackCount} tracks!`)*/
 
                toast.success('Playlist saved successfully!', {
                 position: "top-right",
@@ -64,8 +59,6 @@ export const Playlist = ({playlistData, setPlaylistData, moveTrackToTrackList, d
 
     }
 
-    
-
     const handlePlaylistSave = (event) => {
         
         if (accessToken) {
@@ -75,24 +68,6 @@ export const Playlist = ({playlistData, setPlaylistData, moveTrackToTrackList, d
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
     return (
         <div id={styles.playlistContainer}>
             <div id={styles.content}>
@@ -105,7 +80,7 @@ export const Playlist = ({playlistData, setPlaylistData, moveTrackToTrackList, d
                     />
 
                 <ul id={styles.list}>
-                    {!playlistData ? <p>Add Tracks To Playlist</p>
+                    {!playlistData ? <p></p>
                      :playlistData.map((track) => ( 
                         <li key={track.id}> 
                             <PlaylistTrack 

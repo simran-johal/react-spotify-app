@@ -1,8 +1,9 @@
 
 
 #playlistTrackContainer {
-    border: solid 1px green;
+    /*border: solid 1px green;*/
     box-sizing: border-box;
+    width: 100%;
 
     
 
@@ -10,9 +11,8 @@
 
 
 #content {
- /*   border: solid 1px red;*/
     box-sizing: border-box;
-    background-color: rgb(99, 99, 99);
+    background-color: rgba(99, 99, 99, 0.4); /* More transparent */
     border-radius: 5px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -20,14 +20,11 @@
     align-items: center;
     margin: 5px 0px;
     font-size: 10px;
-
-
-
-
-
-
-
-
+    height: 60px;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 8px;
 }
 
 #songName {
@@ -36,8 +33,6 @@
     justify-self: center;
     margin: 0;
     font-weight: 800;
-
-
 }
 
 #artist {
@@ -46,9 +41,7 @@
     justify-self: center;
     margin: 0;
     font-weight: 200;
-
 }
-
 
 #album {
     grid-column: 2 / span 1;
@@ -56,7 +49,6 @@
     justify-self: center;
     margin: 0;
     font-weight: 200;
-
 }
 
 #btn {
@@ -66,6 +58,17 @@
     border: none;
     background: none;
     margin: 0;
-
-
+    color: white; /* Ensure button text/icon is visible */
+    cursor: pointer;
 }
+
+
+#content:hover {
+    background-color: rgba(120, 120, 120, 0.5);
+}
+
+
+#btn:hover {
+    opacity: 0.1;
+}
+

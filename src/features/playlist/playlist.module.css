@@ -9,7 +9,7 @@
 
 #content {
     box-sizing: border-box;
-    background-color: #343434;
+    background: #121212;
     /*border: solid 1px yellow;*/
     padding: 1.5rem 1.38vw;
     border-radius: 10px;
@@ -42,6 +42,11 @@
     
 
 }
+
+#list {
+    width: 100%;
+}
+
 
 #btn {
     border: none ;  

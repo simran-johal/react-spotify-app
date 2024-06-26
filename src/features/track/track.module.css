@@ -9,8 +9,8 @@
 }
 
 
-#content {
- /*   border: solid 1px red;*/
+/*#content {
+    border: solid 1px red;
     box-sizing: border-box;
     background-color: rgb(99, 99, 99);
     border-radius: 5px;
@@ -21,13 +21,6 @@
     margin: 5px 0px;
     font-size: 10px;
     height: 60px;
-
-
-
-
-
-
-
 
 }
 
@@ -69,4 +62,66 @@
     margin: 0;
 
 
+}*/
+
+#content {
+    box-sizing: border-box;
+    background-color: rgba(99, 99, 99, 0.4); /* More transparent */
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    margin: 5px 0px;
+    font-size: 10px;
+    height: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 8px;
+}
+
+#songName {
+    grid-column: 1 / span 1;
+    grid-row: 1;
+    justify-self: center;
+    margin: 0;
+    font-weight: 800;
+}
+
+#artist {
+    grid-column: 1 / span 1;
+    grid-row: 2;
+    justify-self: center;
+    margin: 0;
+    font-weight: 200;
+}
+
+#album {
+    grid-column: 2 / span 1;
+    grid-row: 2;
+    justify-self: center;
+    margin: 0;
+    font-weight: 200;
+}
+
+#btn {
+    grid-column: 3 / span 1;
+    grid-row: 1;
+    justify-self: right;
+    border: none;
+    background: none;
+    margin: 0;
+    color: white; /* Ensure button text/icon is visible */
+    cursor: pointer;
+}
+
+
+#content:hover {
+    background-color: rgba(120, 120, 120, 0.5);
+}
+
+
+#btn:hover {
+    opacity: 0.1;
 }

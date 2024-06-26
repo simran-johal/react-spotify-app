@@ -15,7 +15,7 @@ const constructUrl = (searchTerm) => {
 
 
 // GET REQUEST FETCH FUNCTION
-export const fetchDataWithToken = async (searchTerm) => {
+export const fetchDataWithToken = async (searchTerm) => { // WHEN THIS EXECUTES == 401
     const urlToFetch = constructUrl(searchTerm);
 
 
@@ -172,6 +172,11 @@ export const getUserId = async () => {
                 'Authorization': `Bearer ${accessToken}`
             }
         })
+
+        if (response.status === 401) {
+            accessToken = await refreshAccessToken();
+
+          }
 
         if (!response.ok) {
             const errorText = await response.text()
