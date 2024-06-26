@@ -1,7 +1,7 @@
 
 
 #trackContainer {
-    border: solid 1px green;
+    /*border: solid 1px green;*/
     box-sizing: border-box;
 
     
@@ -20,6 +20,7 @@
     align-items: center;
     margin: 5px 0px;
     font-size: 10px;
+    height: 60px;
 
 
 

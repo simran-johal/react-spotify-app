@@ -1,14 +1,14 @@
 /* layout */
 
-* {
+/** {
   border: none !important;
-}
+}*/
 
 /*-----APP------------*/
 .App { /* top level container of header, main + footer */
  
   box-sizing: border-box;
-  border: solid 1px red;
+/*border: solid 1px red;*/
   background: hsl(0, 0%, 7%);
   color: white;
 
@@ -21,7 +21,7 @@
 
 /*-----HEADER------------*/
 #header {
-  border: solid 1px red;
+  /*border: solid 1px red;*/
   height: 5rem;
   box-sizing: border-box;
   display: grid;
@@ -50,7 +50,7 @@
 
 /*-----MAIN------------*/
 #main{
-  border: solid 1px red;
+  /*border: solid 1px red;*/
   padding: 0 6.94vw;
   display: flex;
   flex-direction: column;
@@ -64,7 +64,7 @@
   grid-template-columns: repeat(12, 1fr);
   /*grid-template-rows: repeat(6, 1fr);*/
   grid-gap: 20px;
-  border: solid 1px green;
+  /*border: solid 1px green;*/
   padding: 2.7vh 0;
   justify-content: center;
   flex: 0 0 40vh
@@ -101,7 +101,7 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-gap: 20px;
-  border: solid 1px green;
+  /*border: solid 1px green;*/
   padding: 2.7vh 0;
   justify-content: center;
   flex: 1 0 50vh
@@ -113,7 +113,7 @@
 
 /*-----FOOTER------------*/
 #footer {
-  border: solid 1px red;
+  /*border: solid 1px red;*/
   height: 40px;
   box-sizing: border-box;
   display: flex;

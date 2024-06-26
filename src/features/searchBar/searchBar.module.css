@@ -10,7 +10,7 @@
 }
 
 #content {
-    /*border: solid 1px green;*/
+
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -19,9 +19,17 @@
     padding: 1.25rem 2.7vw;
     background: #343434;
     height: 12.5rem;
-    border-radius: 10px;
-    width: 100%;    
+    border-radius: 8px;
+    width: 100%; 
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1),
+                0 0 10px 0 rgba(30, 215, 96, 0.6), /* Green glow */
+                0 0 0 1px rgba(30, 215, 96, 0.1); /* Green border glow */
 }
+
+
+
+
+
 
 
 #h1 {
@@ -34,6 +42,7 @@
 
 #songSearch {
     box-sizing: border-box;
+    background-color: #2c2c2c;
     border: none;
     padding: 10px 16px;
     height: 44px;
@@ -41,20 +50,51 @@
     width: 100%;
     margin-top: 40px;
     margin-bottom: 16px;
-    border-radius: 10px
-
+    border-radius: 5px;
+    outline: none;
+    color: white;
 
 }
 
-button {
+#songSearch::placeholder {
+    color: #808080;
+}
+
+#songSearch:focus {
+    background-color: #3c3c3c;
+}
+
+#songSearch:-webkit-autofill,
+#songSearch:-webkit-autofill:hover,
+#songSearch:-webkit-autofill:focus {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #2c2c2c inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+#button {
     border: none ;  
     padding: 10px 16px;
-    height: 44px;
+    height: 38px;
     font-size: 16px;
     border-radius: 5px;
-    
+    background-color: #1ed760;
+    color: #000000;
+    border-radius: 500px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
 
 }
+
+#button:hover {
+    background-color: #1fdf64;
+}
+
+#button:active {
+    background-color: #169c46;
+}
+
 
 
 @media only screen and (max-width: 600px) { /* developing at 375x812px */
