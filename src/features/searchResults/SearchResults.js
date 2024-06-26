@@ -5,7 +5,7 @@ import { TrackList } from '../trackList/Tracklist';
 
 export const SearchResults = ({data, setData, moveTrackToPlaylist}) => {
 
-    // here we will manage SearchResults' state + event handler logic
+
 
 
 

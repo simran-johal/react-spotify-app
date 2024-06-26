@@ -1,7 +1,7 @@
 /* layout */
 
 #playlistContainer {
-    /*border: solid 1px lightblue;*/
+    border: solid 1px lightblue;
     grid-column: span 6;
 
 }
@@ -10,11 +10,11 @@
 #content {
     box-sizing: border-box;
     background-color: #343434;
-    /*border: solid 1px yellow;*/
+    border: solid 1px yellow;
     padding: 1.5rem 1.38vw;
     border-radius: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: top;
     height: 100%;
     width: 100%;
     align-items: center;
@@ -25,7 +25,6 @@
 
 #playlistName {
     box-sizing: border-box;
-    /*border: solid 1px pink;*/
     width: 100%;
     border-radius: 5px;
     flex: 0 0 2.75rem
@@ -33,7 +32,7 @@
 }
 
 #btn {
-    border: solid 1px blue;
+
 
 }
 

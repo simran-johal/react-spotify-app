@@ -16,7 +16,7 @@ export const TrackList = ({data, setData, moveTrackToPlaylist}) => {
                     {!data || 
                      !data.tracks || 
                      data.tracks.items.length === 0 
-                     ? <p>Search For a Song</p> 
+                     ? <p></p> 
                      :data.tracks.items.map((track) => ( 
                         <li key={track.id}> 
                             <Track 

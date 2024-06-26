@@ -1,7 +1,6 @@
 /* layout */
 
 #searchResultsContainer {
-   /* border: solid 1px yellow;*/
     grid-column: span 6;
     
 
@@ -11,7 +10,6 @@
 #content {
     box-sizing: border-box;
     background-color: #343434;
-    /*border: solid 1px pink;*/
     padding: 1.5rem 1.38vw;
     border-radius: 10px;
     display: flex;
@@ -25,10 +23,10 @@
 
 #header {
     box-sizing: border-box;
-    /*border: solid 1px green;*/
     margin: 0;
     width: 100%;
-    flex: 0 0 2.75rem
+    flex: 0 0 2.75rem;
+    
 }
 
 @media only screen and (max-width: 600px) { /* developing at 375x812px */

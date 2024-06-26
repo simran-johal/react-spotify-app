@@ -105,7 +105,7 @@ export const Playlist = ({playlistData, setPlaylistData, moveTrackToTrackList, d
                     />
 
                 <ul id={styles.list}>
-                    {!playlistData ? <p>No Tracks Added to Playlist</p>
+                    {!playlistData ? <p>Add Tracks To Playlist</p>
                      :playlistData.map((track) => ( 
                         <li key={track.id}> 
                             <PlaylistTrack 

@@ -108,7 +108,7 @@ export const SearchBar = ({data, setData}) => {
         
         if (!storedToken) {
             localStorage.setItem('pendingSearchTerm', name);
-            toast.success('User Authorised Successfully, Results Incoming...', {
+            toast.success('User Authorised Successfully', {
                 position: "top-right",
                 autoClose: 2000,
                 hideProgressBar: false,
