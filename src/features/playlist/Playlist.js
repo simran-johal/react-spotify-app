@@ -50,7 +50,7 @@ export const Playlist = ({playlistData, setPlaylistData, moveTrackToTrackList, d
             console.log('Error saving playlist: ', fetchError.message)
             /*alert(`Failed to save playlist: ${fetchError.message}`);*/
 
-            toast.success('Playlist failed to save!', {
+            toast.error('Playlist failed to save!', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -77,6 +77,22 @@ export const Playlist = ({playlistData, setPlaylistData, moveTrackToTrackList, d
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     return (
         <div id={styles.playlistContainer}>
             <div id={styles.content}>

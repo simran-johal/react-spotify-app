@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { redirectToSpotifyAuthorization, extractAuthorizationCode, exchangeCodeForToken } from '../../utils/authUtils';
 import { fetchDataWithToken } from '../../utils/fetchUtils';
 import styles from './searchBar.module.css';
+import { toast } from 'react-toastify'
 
 
 export const SearchBar = ({data, setData}) => {
@@ -30,7 +31,7 @@ export const SearchBar = ({data, setData}) => {
                 setSearchTerm(pendingSearchTerm);
                 localStorage.removeItem('pendingSearchTerm');
 
-                fetchData(pendingSearchTerm, storedToken) // SOLUTION TRIAL
+                fetchData(pendingSearchTerm, storedToken) 
             }
 
         } else {
@@ -107,12 +108,34 @@ export const SearchBar = ({data, setData}) => {
         
         if (!storedToken) {
             localStorage.setItem('pendingSearchTerm', name);
-            redirectToSpotifyAuthorization();
+            toast.success('User Authorised Successfully, Results Incoming...', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+              setTimeout(() => {redirectToSpotifyAuthorization()}, 2000);
             return;
         }
 
         setSearchTerm(name);
     };
+    
+
+
+
+
+
+
+
+
+
+
+
+
     
     return (
         <div id={styles.searchBarComponentContainer}>
