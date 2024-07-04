@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify'
-import config from './config.js'
+import config from '../config.js'
 
 
 // function to construct authorization URL and redirect USER
