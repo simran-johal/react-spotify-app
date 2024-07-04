@@ -1,11 +1,16 @@
 import { toast } from 'react-toastify'
+import config from './config.js'
+
 
 // function to construct authorization URL and redirect USER
 export const redirectToSpotifyAuthorization = () => {
     const responseType = 'code';
     const clientId = 'cbcdb22a0db349978821aa6866c9617b';
     const scopes = encodeURIComponent('user-read-private user-read-email playlist-modify-public playlist-modify-private');
-    const redirectUri = encodeURIComponent('http://localhost:3000/callback');
+    /*const redirectUri = encodeURIComponent('http://localhost:3000/callback');*/
+    /*const redirectUri = encodeURIComponent('https://simran-johal.github.io/react-spotify-app/')*/
+    const redirectUri = encodeURIComponent(config.redirectUri)
+
     const authorizationUrl = `https://accounts.spotify.com/authorize?response_type=${responseType}&client_id=${clientId}&scope=${scopes}&redirect_uri=${redirectUri}`;
     console.log('Redirecting to:', authorizationUrl); // Debugging log
 
@@ -22,7 +27,9 @@ export const extractAuthorizationCode = () => {
 export const exchangeCodeForToken = async (code, redirectToSpotifyAuthorization) => {
     const clientId = 'cbcdb22a0db349978821aa6866c9617b'; 
     const clientSecret = '5aea38c0e14f4dc7b7a6fdb034f1272b';
-    const redirectUri = 'http://localhost:3000/callback';
+    /*const redirectUri = 'http://localhost:3000/callback';*/
+    /*const redirectUri = 'https://simran-johal.github.io/react-spotify-app/';*/
+    const redirectUri = encodeURIComponent(config.redirectUri)
     const tokenUrl = 'https://accounts.spotify.com/api/token';
 
     const body = new URLSearchParams({
