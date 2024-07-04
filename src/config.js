@@ -1,6 +1,9 @@
 
 
 
+
+
+
 export default {
-    redirectUri: 'http://localhost:3000/callback'
+    redirectUri: 'https://simran-johal.github.io/react-spotify-app'
 };
