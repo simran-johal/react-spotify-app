@@ -10,6 +10,7 @@ export const redirectToSpotifyAuthorization = () => {
     /*const redirectUri = encodeURIComponent('http://localhost:3000/callback');*/
     /*const redirectUri = encodeURIComponent('https://simran-johal.github.io/react-spotify-app/')*/
     const redirectUri = config.redirectUri
+    console.log(redirectUri)
 
     const authorizationUrl = `https://accounts.spotify.com/authorize?response_type=${responseType}&client_id=${clientId}&scope=${scopes}&redirect_uri=${redirectUri}`;
     console.log('Redirecting to:', authorizationUrl); // Debugging log
