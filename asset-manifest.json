@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/react-spotify-app/static/css/main.c329179a.css",
-    "main.js": "/react-spotify-app/static/js/main.cbfe47ab.js",
+    "main.js": "/react-spotify-app/static/js/main.be784a53.js",
     "static/js/453.bcdf3eba.chunk.js": "/react-spotify-app/static/js/453.bcdf3eba.chunk.js",
     "static/media/Spotify_Logo_RGB_Green.png": "/react-spotify-app/static/media/Spotify_Logo_RGB_Green.0c4ae91bae23217d39c9.png",
     "static/media/logo.svg": "/react-spotify-app/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/react-spotify-app/index.html",
     "main.c329179a.css.map": "/react-spotify-app/static/css/main.c329179a.css.map",
-    "main.cbfe47ab.js.map": "/react-spotify-app/static/js/main.cbfe47ab.js.map",
+    "main.be784a53.js.map": "/react-spotify-app/static/js/main.be784a53.js.map",
     "453.bcdf3eba.chunk.js.map": "/react-spotify-app/static/js/453.bcdf3eba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c329179a.css",
-    "static/js/main.cbfe47ab.js"
+    "static/js/main.be784a53.js"
   ]
 }
