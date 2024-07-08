@@ -2,6 +2,7 @@ import { toast } from 'react-toastify'
 import config from '../config.js';
 
 
+
 // function to construct authorization URL and redirect USER
 export const redirectToSpotifyAuthorization = () => {
     const responseType = 'code';
@@ -14,6 +15,10 @@ export const redirectToSpotifyAuthorization = () => {
 
     const authorizationUrl = `https://accounts.spotify.com/authorize?response_type=${responseType}&client_id=${clientId}&scope=${scopes}&redirect_uri=${redirectUri}`;
     console.log('Redirecting to:', authorizationUrl); // Debugging log
+
+
+    
+
 
     window.location.href = authorizationUrl;
 };
@@ -123,3 +128,4 @@ export const refreshAccessToken = async () => {
     }
 
 }
+

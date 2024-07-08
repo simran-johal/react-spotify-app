@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { redirectToSpotifyAuthorization, extractAuthorizationCode, exchangeCodeForToken } from '../../utils/authUtils';
+import { redirectToSpotifyAuthorization, extractAuthorizationCode, exchangeCodeForToken} from '../../utils/authUtils';
 import { fetchDataWithToken } from '../../utils/fetchUtils';
 import styles from './searchBar.module.css';
 import { toast } from 'react-toastify'
@@ -12,6 +12,7 @@ export const SearchBar = ({data, setData}) => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const [searchTerm, setSearchTerm] = useState('')
+
 
 
     // DYNAMIC VALIDATION
@@ -30,7 +31,6 @@ export const SearchBar = ({data, setData}) => {
             if (pendingSearchTerm) {
                 setSearchTerm(pendingSearchTerm);
                 localStorage.removeItem('pendingSearchTerm');
-
                 fetchData(pendingSearchTerm, storedToken) 
             }
 
@@ -38,7 +38,7 @@ export const SearchBar = ({data, setData}) => {
             const authCode = extractAuthorizationCode();
             if (authCode) {
                 handleCodeExchange(authCode);
-            }
+            } 
         }
     }, []);
 
@@ -98,7 +98,23 @@ export const SearchBar = ({data, setData}) => {
         }
     }, [accessToken, searchTerm]) 
 
-    
+    const showRedirectToast = () => {
+        toast.info(
+            'You\'re being redirected to Spotify. If not automatically returned, please use your browser\'s back button to return to app.',
+            {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                onClose: () => {
+                    redirectToSpotifyAuthorization();
+                }
+            }
+        );
+    };
 
 
     // HANDLING THE SEARCH TRIGGER NEW
@@ -108,7 +124,8 @@ export const SearchBar = ({data, setData}) => {
         
         if (!storedToken) {
             localStorage.setItem('pendingSearchTerm', name);
-            toast.success('User Authorised Successfully', {
+            showRedirectToast()
+            /*toast.success('User Authorised Successfully', {
                 position: "top-right",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -117,25 +134,14 @@ export const SearchBar = ({data, setData}) => {
                 draggable: true,
                 progress: undefined,
               });
-              setTimeout(() => {redirectToSpotifyAuthorization()}, 2000);
+              setTimeout(() => {redirectToSpotifyAuthorization()}, 2000);*/
             return;
         }
 
         setSearchTerm(name);
     };
     
-
-
-
-
-
-
-
-
-
-
-
-
+   
     
     return (
         <div id={styles.searchBarComponentContainer}>
@@ -143,6 +149,9 @@ export const SearchBar = ({data, setData}) => {
 
 
                 <h1 id={styles.h1}>Search</h1>
+
+
+
                 <input
                     value={name}
                     type="text"
