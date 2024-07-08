@@ -64,13 +64,7 @@ export const SearchBar = ({data, setData}) => {
         }
     };
 
-    
 
-   
-
-   
-
-  
     // CHECKING IF STATE IS UPDATED
     useEffect(() => {
         if (accessToken) {
@@ -80,7 +74,7 @@ export const SearchBar = ({data, setData}) => {
 
     const showRedirectToast = () => {
         toast.info(
-            'Redirecting to Spotify. If not auto-returned, use the back button.\nSome browsers need to authorize twice before searches are succesful. ',
+            'Redirecting to Spotify. If not auto-returned, use the back button.\nSome browsers need to authorize twice before searches are successful. ',
             
             {
                 position: "top-center",
