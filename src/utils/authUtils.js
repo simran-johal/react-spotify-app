@@ -17,7 +17,7 @@ export const redirectToSpotifyAuthorization = () => {
     console.log('Redirecting to:', authorizationUrl); // Debugging log
 
 
-    
+
 
 
     window.location.href = authorizationUrl;
@@ -70,10 +70,12 @@ export const exchangeCodeForToken = async (code, redirectToSpotifyAuthorization)
         localStorage.getItem('refreshToken', data.refresh_token)
         console.log("3. Stored refreshToken to localStorage: ", data.refresh_token)
 
+
         return data.access_token;
 
     } catch (error) {
         console.log('Error', error); 
+
         return null;
     }
 }

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import { redirectToSpotifyAuthorization, extractAuthorizationCode, exchangeCodeForToken} from '../../utils/authUtils';
 import { fetchDataWithToken } from '../../utils/fetchUtils';
 import styles from './searchBar.module.css';
@@ -20,7 +20,7 @@ export const SearchBar = ({data, setData}) => {
         setName(event.target.value)
      }
 
-    // TOKEN EXCHANGE PROCESS OF AUTHORISATION
+    // TOKEN EXCHANGE PROCESS OF AUTHORISATION - ORIGINAL
     useEffect(() => {
         const storedToken = localStorage.getItem('accessToken');
         const pendingSearchTerm = localStorage.getItem('pendingSearchTerm');
@@ -64,6 +64,12 @@ export const SearchBar = ({data, setData}) => {
         }
     };
 
+    
+
+   
+
+   
+
   
     // CHECKING IF STATE IS UPDATED
     useEffect(() => {
@@ -72,8 +78,27 @@ export const SearchBar = ({data, setData}) => {
         }
     }, [accessToken]);
 
-  
-    const fetchData = async () => {
+    const showRedirectToast = () => {
+        toast.info(
+            'Redirecting to Spotify. If not auto-returned, use the back button.\nSome browsers need to authorize twice before searches are succesful. ',
+            
+            {
+                position: "top-center",
+                autoClose: 6000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                onClose: () => {
+                    redirectToSpotifyAuthorization();
+                }
+            }
+        );
+    };
+
+    // ORIGINAL FETCH DATA
+   const fetchData = async () => {
         setLoading(true);
         try {
 
@@ -88,7 +113,7 @@ export const SearchBar = ({data, setData}) => {
         }
 }
 
-     // FFETCH DATA WHEN SEARCHTEMR AND ACCESSTOKEN AVAILABLE
+     // FFETCH DATA WHEN SEARCHTERM AND ACCESSTOKEN AVAILABLE
     useEffect(() => {
 
         const accessToken = localStorage.getItem('accessToken');
@@ -98,26 +123,11 @@ export const SearchBar = ({data, setData}) => {
         }
     }, [accessToken, searchTerm]) 
 
-    const showRedirectToast = () => {
-        toast.info(
-            'You\'re being redirected to Spotify. If not automatically returned, please use your browser\'s back button to return to app.',
-            {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                onClose: () => {
-                    redirectToSpotifyAuthorization();
-                }
-            }
-        );
-    };
+   
+    
 
 
-    // HANDLING THE SEARCH TRIGGER NEW
+    // HANDLING THE SEARCH TRIGGER ORIGINAL
     const handleSearch = (event) => {
         if (event) event.preventDefault();
         const storedToken = localStorage.getItem('accessToken');
@@ -125,21 +135,15 @@ export const SearchBar = ({data, setData}) => {
         if (!storedToken) {
             localStorage.setItem('pendingSearchTerm', name);
             showRedirectToast()
-            /*toast.success('User Authorised Successfully', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-              });
-              setTimeout(() => {redirectToSpotifyAuthorization()}, 2000);*/
+            
             return;
         }
 
         setSearchTerm(name);
+
     };
+
+   
     
    
     
